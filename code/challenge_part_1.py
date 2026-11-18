@@ -1,8 +1,17 @@
-import requests
+import requests, time, logging
 import pandas as pd
 import matplotlib.pyplot as plt
 
 BASE_URL = "https://services6.arcgis.com/nyYfO9SxHU2ChQd9/ArcGIS/rest/services/Service_Requests_2023_until_20_May_2026/FeatureServer/"
+LOG_FILE = "arcgis_fetch.log"
+
+logger = logging.LogFile("arcgis_fetch")
+logger.setLevel(logging.INFO)
+if not logger.handlers:
+    format = logging.Formatter("%(asctime)s %(levelname)-8s %(message)s", "%Y-%m-%d %H-%M-%S")
+    for handler in (logging.StreamHandler(), logging.FileHandler(LOG_FILE)):
+        handler.setFormat(format)
+        logger.addHandler(handler)
 
 def fetch_dataset_schema(base_url):
     """ 
