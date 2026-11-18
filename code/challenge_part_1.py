@@ -18,12 +18,17 @@ def fetch_dataset_schema(base_url):
     This fetches the dataset schema from the 
     ArcGIS REST API and returns it as a dictionary. 
     """
-    r = requests.get(f"{base_url}/layers", params={"f": "json"}, timeout=30)                            # This line fetches the dataset schema from the ArcGIS REST API using a GET request. The 'f' parameter specifies the format of the response, which is set to 'json'. The timeout is set to 30 seconds to prevent hanging requests.
-    r.raise_for_status()                                                                                # This line raises an HTTPError if the request returned an unsuccessful status code. It ensures that any issues with the request are caught and handled appropriately.     
-    data = r.json()                                                                                     # This line parses the JSON response from the API into a Python dictionary. The 'json()' method converts the JSON string into a Python data structure (in this case, a dictionary).                                 
+    logger.info("Fetching schema from %s", url)
+    try:
+        r = requests.get(f"{base_url}/layers", params={"f": "json"}, timeout=30)                            # This line fetches the dataset schema from the ArcGIS REST API using a GET request. The 'f' parameter specifies the format of the response, which is set to 'json'. The timeout is set to 30 seconds to prevent hanging requests.
+        r.raise_for_status()       
+    except requests.RequestException:
+        logger.exception("HTTP request for schema failed")                                               # logger.exception logs at ERROR level and includes the traceback.
+        raise                                                                                            # This line raises an HTTPError if the request returned an unsuccessful status code. It ensures that any issues with the request are caught and handled appropriately.     
+    data = r.json()                                                                                      # This line parses the JSON response from the API into a Python dictionary. The 'json()' method converts the JSON string into a Python data structure (in this case, a dictionary).                                 
     if "error" in data:
-        raise RuntimeError(f"There was an error fetching the dataset schema: {data['error']}")          # This line checks if the 'error' key is present in the response data. If it is, it raises a RuntimeError with a message indicating that there was an error fetching the dataset schema, along with the error details from the response.
-    return data.get("layers", []) + data.get("tables", [])                                              # This line returns a list of layers and tables from the dataset schema. It combines the 'layers' and 'tables' keys from the dictionary, defaulting to empty lists if they are not present.
+        raise RuntimeError(f"There was an error fetching the dataset schema: {data['error']}")           # This line checks if the 'error' key is present in the response data. If it is, it raises a RuntimeError with a message indicating that there was an error fetching the dataset schema, along with the error details from the response.
+    return data.get("layers", []) + data.get("tables", [])                                               # This line returns a list of layers and tables from the dataset schema. It combines the 'layers' and 'tables' keys from the dictionary, defaulting to empty lists if they are not present.
 
 def fetch_dataset_records(base_url, layer_id, page_size=1000):
     """ 
@@ -31,7 +36,8 @@ def fetch_dataset_records(base_url, layer_id, page_size=1000):
     ArcGIS REST API and returns them, paging past 
     the maximum record count if necessary. 
     """
-    url = f"{base_url}/{layer_id}/query"                                                                 # This line constructs the URL for fetching records from a specific layer in the dataset. It appends the layer ID to the base URL and specifies the 'query' endpoint.  
+    url = f"{base_url}/{layer_id}/query"      
+    logger.info("Fetching schema from %s", url)
     rows, offset = [], 0                                                                                 # This line initializes an empty list 'rows' to store the fetched records and sets the 'offset' to 0 for pagination. The offset is used to keep track of how many records have been fetched so far.
     while True:
         params = {
@@ -41,10 +47,15 @@ def fetch_dataset_records(base_url, layer_id, page_size=1000):
             "resultOffset": offset,                                                                      # This line sets the 'resultOffset' parameter to the current value of 'offset'. It tells the API to start returning records from this offset, allowing for pagination through the dataset.
             "f": "json",                                                                                 # This line sets the 'f' parameter to "json", specifying that the response format should be JSON. It ensures that the data is returned in a structured format that can be easily parsed.
         }
-        r = requests.get(url, params=params, timeout=30)                                                 # The same as before, this line sends a GET request to the constructed URL with the specified parameters and a timeout of 30 seconds. It fetches a page of records from the dataset.
-        r.raise_for_status()                                                                             # The same as before, this line raises an HTTPError if the request returned an unsuccessful status code. It ensures that any issues with the request are caught and handled appropriately.
+        try:
+            r = requests.get(url, params=params, timeout=30)                                             # The same as before, this line sends a GET request to the constructed URL with the specified parameters and a timeout of 30 seconds. It fetches a page of records from the dataset.
+            r.raise_for_status()                                                                         # The same as before, this line raises an HTTPError if the request returned an unsuccessful status code. It ensures that any issues with the request are caught and handled appropriately.
+        except requests.RequestException:
+            logger.exception("HTTP request for schema failed")                                               # logger.exception logs at ERROR level and includes the traceback.
+            raise
         dataset = r.json()                                                                               # The same as before, this line parses the JSON response from the API into a Python dictionary. The 'json()' method converts the JSON string into a Python data structure (in this case, a dictionary).
         if "error" in dataset:
+            logger.error("ArcGIS returned an error for the schema: %s", data["error"])
             raise RuntimeError(f"There was an error fetching records: {dataset['error']}")               # This line checks if the 'error' key is present in the response data. If it is, it raises a RuntimeError with a message indicating that there was an error fetching records, along with the error details from the response.
         features = dataset.get("features", [])                                                           # This line retrieves the list of features (records) from the response data. It uses the 'get' method to access the 'features' key, defaulting to an empty list if the key is not present.
         rows.extend(f["attributes"] for f in features)                                                   # This line extends the 'rows' list with the attributes of each feature in the fetched page. It uses a list comprehension to extract the 'attributes' dictionary from each feature and adds them to the 'rows' list.
@@ -61,6 +72,7 @@ def fetch_filtered_dataset_records(base_url, layer_id, where="1=1", page_size=10
     the maximum record count if necessary. 
     """
     url = f"{base_url}/{layer_id}/query"                                                                 # This line constructs the URL for fetching records from a specific layer in the dataset. It appends the layer ID to the base URL and specifies the 'query' endpoint.  
+    logger.info("Fetching schema from %s", url)
     rows, offset = [], 0                                                                                 # This line initializes an empty list 'rows' to store the fetched records and sets the 'offset' to 0 for pagination. The offset is used to keep track of how many records have been fetched so far.
     while True:
         params = {
@@ -70,10 +82,15 @@ def fetch_filtered_dataset_records(base_url, layer_id, where="1=1", page_size=10
             "resultOffset": offset,                                                                      # This line sets the 'resultOffset' parameter to the current value of 'offset'. It tells the API to start returning records from this offset, allowing for pagination through the dataset.
             "f": "json",                                                                                 # This line sets the 'f' parameter to "json", specifying that the response format should be JSON. It ensures that the data is returned in a structured format that can be easily parsed.
         }
-        r = requests.get(url, params=params, timeout=30)                                                 # The same as before, this line sends a GET request to the constructed URL with the specified parameters and a timeout of 30 seconds. It fetches a page of records from the dataset.
-        r.raise_for_status()                                                                             # The same as before, this line raises an HTTPError if the request returned an unsuccessful status code. It ensures that any issues with the request are caught and handled appropriately.
-        dataset = r.json()                                                                               # The same as before, this line parses the JSON response from the API into a Python dictionary. The 'json()' method converts the JSON string into a Python data structure (in this case, a dictionary).
+        try:
+            r = requests.get(url, params=params, timeout=30)                                             # The same as before, this line sends a GET request to the constructed URL with the specified parameters and a timeout of 30 seconds. It fetches a page of records from the dataset.
+            r.raise_for_status()                                                                         # The same as before, this line raises an HTTPError if the request returned an unsuccessful status code. It ensures that any issues with the request are caught and handled appropriately.
+        except requests.RequestException:
+            logger.exception("HTTP request for schema failed")                                            # logger.exception logs at ERROR level and includes the traceback.
+            raise                                                                                         # The same as before, this line parses the JSON response from the API into a Python dictionary. The 'json()' method converts the JSON string into a Python data structure (in this case, a dictionary).
+        dataset = r.json()
         if "error" in dataset:
+            logger.error("ArcGIS returned an error for the schema: %s", data["error"])
             raise RuntimeError(f"There was an error fetching records: {dataset['error']}")               # This line checks if the 'error' key is present in the response data. If it is, it raises a RuntimeError with a message indicating that there was an error fetching records, along with the error details from the response.
         features = dataset.get("features", [])                                                           # This line retrieves the list of features (records) from the response data. It uses the 'get' method to access the 'features' key, defaulting to an empty list if the key is not present.
         rows.extend(f["attributes"] for f in features)                                                   # This line extends the 'rows' list with the attributes of each feature in the fetched page. It uses a list comprehension to extract the 'attributes' dictionary from each feature and adds them to the 'rows' list.
