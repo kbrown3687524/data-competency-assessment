@@ -43,6 +43,35 @@ def fetch_dataset_records(base_url, layer_id, page_size=1000):
         if not dataset.get("exceededTransferLimit") or not features:                                     # This line checks if the 'exceededTransferLimit' key is not present or if there are no features returned in the current page. If either condition is true, it means that all records have been fetched, and the loop can be exited.
             break
         offset += len(features)                                                                          # This line increments the 'offset' by the number of features fetched in the current page. It prepares the offset for the next iteration of the loop, allowing the next page of records to be fetched.
+    return pd.DataFrame(rows) 
+    
+def fetch_filtered_dataset_records(base_url, layer_id, where="1=1", page_size=1000):
+    """ 
+    This fetches the dataset records from the 
+    ArcGIS REST API and returns them, paging past 
+    the maximum record count if necessary. 
+    """
+    url = f"{base_url}/{layer_id}/query"                                                                 # This line constructs the URL for fetching records from a specific layer in the dataset. It appends the layer ID to the base URL and specifies the 'query' endpoint.  
+    rows, offset = [], 0                                                                                 # This line initializes an empty list 'rows' to store the fetched records and sets the 'offset' to 0 for pagination. The offset is used to keep track of how many records have been fetched so far.
+    while True:
+        params = {
+            "where": where,                                                                              # This line sets the 'where' parameter, which is a common SQL trick to select all records. It effectively means "select all records" from the dataset.
+            "outFields": "*",                                                                            # This line sets the 'outFields' parameter to "*", which means that all fields of the records should be returned in the response. It ensures that no data is omitted from the fetched records.
+            "returnGeometry": "false",                                                                   # This line sets the 'returnGeometry' parameter to "false", indicating that the geometry of the features should not be included in the response. It is useful when only attribute data is needed.
+            "resultOffset": offset,                                                                      # This line sets the 'resultOffset' parameter to the current value of 'offset'. It tells the API to start returning records from this offset, allowing for pagination through the dataset.
+            "f": "json",                                                                                 # This line sets the 'f' parameter to "json", specifying that the response format should be JSON. It ensures that the data is returned in a structured format that can be easily parsed.
+        }
+        r = requests.get(url, params=params, timeout=30)                                                 # The same as before, this line sends a GET request to the constructed URL with the specified parameters and a timeout of 30 seconds. It fetches a page of records from the dataset.
+        r.raise_for_status()                                                                             # The same as before, this line raises an HTTPError if the request returned an unsuccessful status code. It ensures that any issues with the request are caught and handled appropriately.
+        dataset = r.json()                                                                               # The same as before, this line parses the JSON response from the API into a Python dictionary. The 'json()' method converts the JSON string into a Python data structure (in this case, a dictionary).
+        if "error" in dataset:
+            raise RuntimeError(f"There was an error fetching records: {dataset['error']}")               # This line checks if the 'error' key is present in the response data. If it is, it raises a RuntimeError with a message indicating that there was an error fetching records, along with the error details from the response.
+        features = dataset.get("features", [])                                                           # This line retrieves the list of features (records) from the response data. It uses the 'get' method to access the 'features' key, defaulting to an empty list if the key is not present.
+        rows.extend(f["attributes"] for f in features)                                                   # This line extends the 'rows' list with the attributes of each feature in the fetched page. It uses a list comprehension to extract the 'attributes' dictionary from each feature and adds them to the 'rows' list.
+
+        if not dataset.get("exceededTransferLimit") or not features:                                     # This line checks if the 'exceededTransferLimit' key is not present or if there are no features returned in the current page. If either condition is true, it means that all records have been fetched, and the loop can be exited.
+            break
+        offset += len(features)                                                                          # This line increments the 'offset' by the number of features fetched in the current page. It prepares the offset for the next iteration of the loop, allowing the next page of records to be fetched.
     return pd.DataFrame(rows)                                                                            # This line converts the list of fetched records (rows) into a pandas DataFrame and returns it. The DataFrame provides a convenient tabular structure for further analysis and manipulation of the dataset records.
 
 if __name__ == "__main__":
@@ -55,3 +84,6 @@ if __name__ == "__main__":
         output = f"{layer_id}_{layer_name.replace(' ', '_')}.csv"                                        # This line constructs the output filename for the CSV file by combining the 'layer_id' and 'layer_name', replacing spaces in the layer name with underscores. It ensures that the filename is valid and descriptive.
         df.to_csv(output, index=False)                                                                   # This line saves the fetched records DataFrame 'df' to a CSV file with the constructed filename 'output'. The 'index=False' argument ensures that the DataFrame index is not included in the CSV file.
         print(f"Saved {len(df)} records to '{output}'")                                                  # This line prints a message indicating that the records have been successfully saved to the specified CSV file, along with the number of records saved. It provides feedback to the user about the completion of the data fetching and saving process.
+        WHERE_CLAUSE="C3_Compliant_Type = 'No Power'"
+        df2 = fetch_filtered_dataset_records(BASE_URL, layer_id, where=WHERE_CLAUSE)
+        print(f"{len(df2)} 'No Power' records returned")
