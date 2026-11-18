@@ -36,8 +36,6 @@
 
 ### Inspecting the dataset's schema
 
-### Inspecting the dataset's schema
-
 1. Using the same Network-tab approach as above, I inspected the `layers` request (`<FeatureServer URL>/layers?f=json`). This endpoint returns every layer in the service along with any associated tables.
 2. 2. Opening this request URL directly in a browser tab returns the same JSON response, showing the fields for each layer and table in the service.
 3. This is the list of records within the Fields:
@@ -55,3 +53,6 @@
   - Completed_Date (type: esriFieldTypeDate, alias: Completed Date, SQL Type: sqlTypeTimestamp2, length: 8, nullable: true, editable: true)
   - Notifications_Created (type: esriFieldTypeInteger, alias: Notifications Created, SQL Type: sqlTypeInteger, nullable: true, editable: true)
   - ObjectId (type: esriFieldTypeOID, alias: ObjectId, SQL Type: sqlTypeInteger, length: 0, nullable: false, editable: false)
+
+### Inspecting the dataset's schema
+
