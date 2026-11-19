@@ -2,6 +2,18 @@ import requests, time, logging
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+session = requests.Session()
+session.mount("https://", HTTPAdapter(
+    maxRetries=Retry(
+        total=5, 
+        backoff_factor=1, 
+        status_forcelist=[429, 500, 502, 503, 504],
+        allowed_methods=['GET']
+        )
+    ))
 
 base_url = "https://services6.arcgis.com/nyYfO9SxHU2ChQd9/ArcGIS/rest/services/Service_Requests_2023_until_20_May_2026/FeatureServer"
 raw_dir = Path(__file__).resolve().parent.parent / "data" / "raw"                                       # This line defines the path to the directory where raw data will be stored. It uses the 'Path' class from the 'pathlib' module to construct the path relative to the current script's location. The 'resolve()' method ensures that the path is absolute, and 'parent.parent' navigates up two levels in the directory structure to reach the desired location. The final path points to a "data/raw" directory, which is intended for storing raw data files fetched from the ArcGIS REST API.
