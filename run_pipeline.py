@@ -14,7 +14,7 @@ def logging_setup():
         format="%(asctime)s %(levelname)-8s %(name)s: %(message)s",
         handlers=[
             logging.StreamHandler(),
-            logging.FileHandler(f"{raw_dir}/logs/pipeline.log", encoding="utf-8"),
+            logging.FileHandler(f"{log_dir}/pipeline.log", encoding="utf-8"),
         ],
     )
 
@@ -27,15 +27,20 @@ def main(argv: list[str] | None = None) -> int:                                 
     args = parser.parse_args(argv)                                                                                              # This function parses the command-line arguments and stores them in the args variable.
     logger = logging.getLogger("run_pipeline")                                                                                  # This function creates a logger object named "run_pipeline" that can be used to log messages throughout the pipeline.
     
+    extract_file = raw_dir / "0_Service_Requests_2023_until_20_May_2026.csv"                                                    # This line defines the absolute path of the raw extract so the check works no matter which folder the script is run from.
+
     try:
-        if args.refresh or not os.path.isfile("data/raw/0_Service_Requests_2023_until_20_May_2026.csv"):                        # This function checks if the "--refresh" argument was specified or if the raw extract file does not exist. If either condition is true, it calls the pipeline.extract.extract() function to download data from the API.
-            challenge_part_1.fetch_dataset_metadata(base_url, "layer_id")
+        if args.refresh or not extract_file.is_file():                                                                          # This checks if the "--refresh" argument was specified or if the raw extract file does not exist. If either is true, the data is downloaded from the API.
+            challenge_part_1.fetch_dataset_metadata(base_url, raw_dir)                                                          # This calls fetch_dataset_metadata() from challenge_part_1 to download the 'No Power' records and save them into raw_dir.
         else:
-            challenge_part_2.transform("data/raw/0_Service_Requests_2023_until_20_May_2026.csv")                                    # This function calls the fetch_and_save_data() function from the challenge_part_1 module to download and save data from the API.                                                                                               
-            logger.info("Using existing extract data/raw/0_Service_Requests_2023_until_20_May_2026.csv (pass --refresh to re-download)")  # This function logs a message indicating that the existing raw extract file will be used instead of downloading new data.    
+            logger.info("Using existing extract %s (pass --refresh to re-download)", extract_file)                             # This logs that the existing raw extract will be used instead of downloading new data.
+        challenge_part_2.transform(extract_file)                                                                                # This always runs the transform step on the raw extract, whether it was just downloaded or already existed.
     except Exception:
-        logger.exception("Pipeline failed")                                                                                     # This function logs an exception message if any error
-    return 1                                                                                                                    # This function returns an exit code of 1 to indicate that the pipeline failed
+        logger.exception("Pipeline failed")                                                                                     # This logs the exception (with traceback) if any step fails.
+        return 1                                                                                                                # This returns an exit code of 1 to indicate that the pipeline failed.
+    logger.info("Pipeline finished successfully")
+    return 0                                                                                                                    # This returns an exit code of 0 to indicate success.
 
 if __name__ == "__main__":
+    logging_setup()                                                                                                             # Logging must be configured before main() runs, otherwise all INFO messages are discarded.
     sys.exit(main())

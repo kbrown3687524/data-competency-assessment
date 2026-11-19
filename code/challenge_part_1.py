@@ -6,7 +6,6 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
 logger = logging.getLogger(__name__)
-
 session = requests.Session()
 session.mount("https://", HTTPAdapter(
     max_retries=Retry(
@@ -17,6 +16,9 @@ session.mount("https://", HTTPAdapter(
         )
     ))
 
+default_raw_dir = Path(__file__).resolve().parent.parent / "data" / "raw"                                 # This line defines the default directory for raw data. 'parent.parent' goes up from code/ to the project root, so the path points to <project>/data/raw. It is only used when no raw_dir is passed in.
+
+
 def fetch_dataset_schema(base_url):
     """ 
     This fetches the dataset schema from the 
@@ -24,7 +26,7 @@ def fetch_dataset_schema(base_url):
     """
     logger.info("Fetching schema from %s", base_url)                                                                 # This line logs an informational message indicating that the dataset schema is being fetched from the specified base URL. It provides feedback to the user about the progress of the data fetching process.
     try:
-        r = requests.get(f"{base_url}/layers", params={"f": "json"}, timeout=3000)                         # This line fetches the dataset schema from the ArcGIS REST API using a GET request. The 'f' parameter specifies the format of the response, which is set to 'json'. The timeout is set to 30 seconds to prevent hanging requests.
+        r = session.get(f"{base_url}/layers", params={"f": "json"}, timeout=30)                            # This line fetches the dataset schema from the ArcGIS REST API using a GET request through the retrying session. The 'f' parameter specifies the format of the response, which is set to 'json'. The timeout is set to 30 seconds to prevent hanging requests.
         r.raise_for_status()       
     except requests.RequestException:
         logger.exception("HTTP request for schema failed")                                               # logger.exception logs at ERROR level and includes the traceback.
@@ -52,7 +54,7 @@ def fetch_dataset_records(base_url, layer_id, page_size=1000):
             "f": "json",                                                                                 # This line sets the 'f' parameter to "json", specifying that the response format should be JSON. It ensures that the data is returned in a structured format that can be easily parsed.
         }
         try:
-            r = requests.get(url, params=params, timeout=30)                                             # The same as before, this line sends a GET request to the constructed URL with the specified parameters and a timeout of 30 seconds. It fetches a page of records from the dataset.
+            r = session.get(url, params=params, timeout=30)                                            # The same as before, this line sends a GET request to the constructed URL with the specified parameters and a timeout of 30 seconds. It fetches a page of records from the dataset.
             r.raise_for_status()                                                                         # The same as before, this line raises an HTTPError if the request returned an unsuccessful status code. It ensures that any issues with the request are caught and handled appropriately.
         except requests.RequestException:
             logger.exception("HTTP request for schema failed")                                               # logger.exception logs at ERROR level and includes the traceback.
@@ -88,7 +90,7 @@ def fetch_filtered_dataset_records(base_url, layer_id, where="1=1", page_size=10
             "f": "json",                                                                                 # This line sets the 'f' parameter to "json", specifying that the response format should be JSON. It ensures that the data is returned in a structured format that can be easily parsed.
         }
         try:
-            r = requests.get(url, params=params, timeout=30)                                             # The same as before, this line sends a GET request to the constructed URL with the specified parameters and a timeout of 30 seconds. It fetches a page of records from the dataset.
+            r = session.get(url, params=params, timeout=30)                                            # The same as before, this line sends a GET request to the constructed URL with the specified parameters and a timeout of 30 seconds. It fetches a page of records from the dataset.
             r.raise_for_status()                                                                         # The same as before, this line raises an HTTPError if the request returned an unsuccessful status code. It ensures that any issues with the request are caught and handled appropriately.
         except requests.RequestException:
             logger.exception("HTTP request for schema failed")                                            # logger.exception logs at ERROR level and includes the traceback.
@@ -105,7 +107,9 @@ def fetch_filtered_dataset_records(base_url, layer_id, where="1=1", page_size=10
         offset += len(features)                                                                          # This line increments the 'offset' by the number of features fetched in the current page. It prepares the offset for the next iteration of the loop, allowing the next page of records to be fetched.
     return pd.DataFrame(rows)                                                                            # This line converts the list of fetched records (rows) into a pandas DataFrame and returns it. The DataFrame provides a convenient tabular structure for further analysis and manipulation of the dataset records.
 
-def fetch_dataset_metadata(base_url, layer_id):
+def fetch_dataset_metadata(base_url, raw_dir=default_raw_dir):
+    raw_dir = Path(raw_dir)
+    raw_dir.mkdir(parents=True, exist_ok=True)                                                           # This line creates the output directory if it does not already exist.
     for item in fetch_dataset_schema(base_url):                                                          # This line calls the 'fetch_dataset_schema' function with the 'base_url' and iterates over each item (layer or table) in the returned list. It allows for processing each layer or table in the dataset schema.
         layer_id, layer_name = item["id"], item["name"]                                                  # This line extracts the 'id' and 'name' of the current layer or table from the item dictionary. The 'layer_id' is used to fetch records for that specific layer, and the 'layer_name' is used for display purposes.
         print(f"Fetching records for layer '{layer_name}' (ID: {layer_id})...")                          # This line prints a message indicating that records are being fetched for the current layer or table, including its name and ID. It provides feedback to the user about the progress of the data fetching process.
@@ -120,3 +124,4 @@ def fetch_dataset_metadata(base_url, layer_id):
         logger.info("Layer %s: %s records downloaded", layer_id, f"{len(df2):,}")
         output = raw_dir /f"{layer_id}_{layer_name.replace(' ', '_')}.csv"
         df2.to_csv(output, index=False)
+        logger.info("Saved %s records to %s", f"{len(df2):,}", output)
