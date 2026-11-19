@@ -33,7 +33,7 @@ def main(argv: list[str] | None = None) -> int:                                 
         if args.refresh or not extract_file.is_file():                                                                          # This checks if the "--refresh" argument was specified or if the raw extract file does not exist. If either is true, the data is downloaded from the API.
             challenge_part_1.fetch_dataset_metadata(base_url, raw_dir)                                                          # This calls fetch_dataset_metadata() from challenge_part_1 to download the 'No Power' records and save them into raw_dir.
         else:
-            logger.info("Using existing extract %s (pass --refresh to re-download)", extract_file)                             # This logs that the existing raw extract will be used instead of downloading new data.
+            logger.info("Using existing extract %s (pass --refresh to re-download)", extract_file)                              # This logs that the existing raw extract will be used instead of downloading new data.
         challenge_part_2.transform(extract_file)                                                                                # This always runs the transform step on the raw extract, whether it was just downloaded or already existed.
     except Exception:
         logger.exception("Pipeline failed")                                                                                     # This logs the exception (with traceback) if any step fails.

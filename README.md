@@ -1,5 +1,23 @@
 # Response to Provincial Health Data Centre – Data Engineer Challenge
 
+## Running the pipeline
+
+Both parts run end-to-end with a single command from the project root:
+
+```bash
+pip install -r requirements.txt
+python run_pipeline.py
+```
+
+- `run_pipeline.py` sets up logging, downloads the "No Power" records (Part 1) if `data/raw/0_Service_Requests_2023_until_20_May_2026.csv` does not exist yet, and then always runs the suburb transformation (Part 2).
+- If the raw extract already exists, the download is skipped so the API is not called again. To force a fresh download, run:
+
+  ```bash
+  python run_pipeline.py --refresh
+  ```
+
+- The script exits with code `0` on success and `1` if any step fails (the error and traceback are written to the log).
+
 ## Challenge Part 0 – Exploring the Data
 
 - I forked the `data-competency-assessment` repository to my personal GitHub so I had a safe backup to revert to if issues arose.
@@ -50,12 +68,12 @@ This option isn't available on every portal, so the Developer Tools approach is 
 
 1. Using the same Network-tab approach, I inspected the `layers` request (`<FeatureServer URL>/layers?f=json`). This endpoint returns every layer in the service along with any associated tables.
 2. Opening this URL directly in a browser tab returns the same JSON response. It contains a `layers` array (spatial data) and a `tables` array (non-spatial data), and each entry has a `fields` array describing the schema.
-3. The same request can be made programmatically. In `code/challenge_part_1.py`, the `fetch_dataset_schema()` function sends a GET request to `<FeatureServer URL>/layers?f=json` and returns the combined `layers` and `tables` lists. The script then prints each field's name and type, so the schema can be checked every time the script runs without opening the browser:
+3. The same request can be made programmatically. In `code/challenge_part_1.py`, the `fetch_dataset_schema()` function sends a GET request to `<FeatureServer URL>/layers?f=json` and returns the combined `layers` and `tables` lists. The script then logs each field's name and type, so the schema can be checked every time the script runs without opening the browser:
 
    ```python
    for item in fetch_dataset_schema(base_url):
        for field in item.get("fields", []):
-           print(f"  Field: {field['name']} ({field['type']})")
+           logger.info(f"  Field: {field['name']} ({field['type']})")
    ```
 
 4. Layer `0` contains the following fields:
@@ -87,39 +105,39 @@ This option isn't available on every portal, so the Developer Tools approach is 
   where=C3_Complaint_Type = 'No Power'
   ```
 
-- The number of matching records was checked with `returnCountOnly=true` before downloading, then compared with the number of rows actually retrieved to confirm the download was complete.
-- Total records: **5,372,466** | "No Power" records: **_TBC_**
+- The number of matching records can be checked with `returnCountOnly=true` (e.g. in the browser) and compared with the number of rows actually retrieved to confirm the download was complete. This comparison is not yet automated in the pipeline.
+- Total records: **5,372,466** | "No Power" records downloaded: **584,665**
 
 ### Data storage
 
 - Raw outputs are written to `data/raw/`, which is git-ignored (`data/raw/*` with an exception for `data/raw/.gitkeep`), so the folder structure is tracked but the data files are never committed.
-- Run logs are written to `arcgis_fetch.log`.
-
-### Running the script
-
-```bash
-pip install -r requirements.txt
-python code/challenge_part_1.py
-```
+- The raw "No Power" extract is saved as `data/raw/0_Service_Requests_2023_until_20_May_2026.csv`.
+- Run logs are written to the console and to `logs/pipeline.log`.
 
 ## Challenge Part 2 – Analysing Records by Suburb
 
 ### Overview
 
-`code/challenge_part_2.py` reads the records downloaded in Part 1, aggregates the number of service requests per suburb, and splits the records into a separate CSV file for each suburb.
+`code/challenge_part_2.py` reads the records downloaded in Part 1, standardises the `Suburb` field, counts the "No Power" reports per suburb, writes the counts to a CSV sorted by count (highest first), and checks that the counts reconcile to the number of records extracted. It also splits the records into a separate CSV file for each suburb.
 
-### Input
+### Input and output
 
-- `data/raw/0_Service_Requests_2023_until_20_May_2026.csv`: the output of `challenge_part_1.py`.
-- The path is built relative to the script's location (`Path(__file__).resolve().parent.parent`), so the script runs correctly from any working directory.
+| File | Description |
+|---|---|
+| `data/raw/0_Service_Requests_2023_until_20_May_2026.csv` | Input: the raw extract from Part 1. |
+| `data/no_power_by_suburb.csv` | Output: one row per suburb (`Suburb`, `count`), sorted by `count` in descending order. |
+| `data/raw/suburb_records/<Suburb>.csv` | Extra output: each suburb's records in its own file (git-ignored). |
+
+All paths are built relative to the script's location (`Path(__file__).resolve().parent.parent`), so the pipeline runs correctly from any working directory.
 
 ### Functions
 
 | Function | Purpose |
 |---|---|
 | `read_data(file_path)` | Reads the CSV into a pandas DataFrame. |
-| `aggregate_reports_by_suburb_data(df)` | Groups records by `Suburb` and counts the requests per suburb, returning a DataFrame with `Suburb` and `count` columns. |
+| `aggregate_reports_by_suburb_data(df)` | Counts the records per suburb (missing suburbs as `Unknown`), writes the sorted counts to `data/no_power_by_suburb.csv`, raises an error if the counts don't add up to the number of records, and returns the total. |
 | `split_records_by_suburb(df)` | Writes each suburb's records to its own CSV in `data/raw/suburb_records/`. |
+| `transform(file_path)` | Runs the steps above in order, after standardising the `Suburb` field. |
 
 ### Splitting records by suburb
 
@@ -129,34 +147,63 @@ python code/challenge_part_1.py
 
 ### Logging
 
-Progress messages are written to the console and to `arcgis_fetch.log` using the same logging configuration as Part 1.
+Progress messages are written to the console and to `logs/pipeline.log`. Logging is configured once in `run_pipeline.py`; each module gets its own logger with `logging.getLogger(__name__)`.
 
 ### Data quality: the `Suburb` field
 
-> _In progress._ Findings and handling decisions for the `Suburb` field (missing or blank values, numeric placeholders such as `0`/`00`, inconsistent capitalisation, stray whitespace, spelling variants and physical addresses) will be documented here, including how many records each decision affected.
+A total of **584,665** "No Power" records were retrieved from the API, and the `Suburb` field of every record was assessed for data quality. Before cleaning, the field held **7,918** distinct values.
 
-### Running the script
+| Issue found | Records affected | Example |
+|---|---|---|
+| Missing (null) suburb | 1,427 | – |
+| Blank (only whitespace) | 145 | `" "` |
+| Numeric placeholders | 28 | `0`, `00`, `000` |
+| Placeholder town name | 165 | `GENERIC TOWN 0000` |
+| Leading, trailing or double spaces | 2,304 | `MASIPHUMELE  SITE -5` |
+| Inconsistent capitalisation | – (see below) | `PLATTEKLOOF 3` (492) vs `Plattekloof 3` (170) |
+| `#` used as a placeholder | 25,638 | `#` |
+| Street addresses instead of suburbs | ~384 | `13 DOVER ROAD,MUIZENBERG` |
+| Spelling variants of the same suburb | not yet quantified | – |
 
-```bash
-python code/challenge_part_2.py
-```
-
+Suburb names that contain numbers, such as `BELHAR EXT 23`, `PLATTEKLOOF 3` or `N1-STAD`, are real suburb or extension names and are kept as they are. Each extension is counted as its own suburb rather than being rolled up into a parent suburb (e.g. `Belhar`), because these are official suburb names and rolling them up would lose detail.
 
 ### Data Quality Issues
 
-- The `Suburb` field has data quality issues. Suburb names aren't recorded consistently (differences in capitalisation, stray whitespace and spelling variants of the same suburb), and some entries are full street addresses rather than suburb names. Left as they are, these split a single suburb across several groups and make the per-suburb counts unreliable. There are several ways to handle this:
+There are several ways to handle these issues:
 
 1. **Relabel invalid values as `Unknown`.** Blank values, numeric placeholders (`0`, `00`, `000`) and street addresses are replaced with a single label such as `Unknown`. This keeps every record in the dataset, so overall totals stay accurate, but it loses the location information for those records, so they can't be attributed to a specific suburb.
 
-2. ** Standardizing. ** Values should be standardized according to a specific format which contributes towards processing. Ensuring that whitespace is stripped appropriately, capitalization is implemented correctly, and any variations in naming are mapped canonically to a single naming convention.
+2. **Standardising.** Values are standardised to one format before counting: whitespace is stripped, capitalisation is made consistent, and any variations in naming are mapped to a single canonical name.
 
-3. **Suburb Recovery.** As there are additional fields within the dataset such as `Ward` which provides a set of coordinates, it it possible to infer the correct suburb through comparison to other records in the dataset or reference it against a set of established suburb boundaries for the City of Cape Town.
+3. **Suburb recovery.** The dataset has other location fields, such as `Ward` and the X/Y coordinates, so it is possible to infer the correct suburb by comparing with other records or with the City of Cape Town's official suburb boundaries.
 
-4. **Removal of Records.** Dropping the records that are invalid is possibly the simplest solution, hwoever this does impact the true number of complaints, which may additionally impact the bias in certain suburbs.
+4. **Removal of records.** Dropping invalid records is the simplest option, but it reduces the true number of complaints and may bias the counts for certain suburbs.
 
-- **Final Decision:** I combined the first and second approaches by renaming and standardizing where possible to ensure accurate interpration of the dataset.
+**Final decision:** I combined the first and second approaches. In `transform()`, one line standardises the `Suburb` field before counting:
 
+```python
+df['Suburb'] = (df['Suburb'].str.strip()
+                .str.replace(r'\s+', ' ', regex=True)
+                .str.upper()
+                .replace(r'^(0*|#|GENERIC TOWN 0+)$', pd.NA, regex=True))
+```
 
-### Validation of Analyses.
+- **Whitespace:** leading and trailing spaces are removed and repeated spaces are collapsed to one, so `MASIPHUMELE  SITE -5` and `MASIPHUMELE SITE -5` are counted together (2,304 records changed).
+- **Capitalisation:** all names are converted to uppercase, so `Plattekloof 3` and `PLATTEKLOOF 3` are counted as one suburb. Together with the whitespace fix, this reduced the number of distinct suburb values from **7,918** to **5,857**.
+- **Placeholders:** blank values, `0`/`00`/`000`, `#` and `GENERIC TOWN 0000` are set to missing and then counted as `Unknown` together with the null values. In total **27,403** records (about 4.7%) are counted as `Unknown`: 1,427 null + 145 blank + 28 numeric + 25,638 `#` + 165 `GENERIC TOWN 0000`. After cleaning, the output has **5,850** suburbs, including `Unknown`.
 
-- I had already included a function into the script to view the number of records per suburb and then count the total number of records accross all suburbs to see if they matched those within the original data at the API endpoint. From what I have calculated, this has caused no loss in records to work with, however as mentioned some information is lost.
+Records are relabelled rather than dropped, so every extracted record is still counted.
+
+**Known limitations (not yet handled):**
+
+- About 384 values are street addresses (e.g. `13 DOVER ROAD,MUIZENBERG`). They are currently counted as separate suburbs. Many end with the suburb name, which could be extracted, or the coordinates could be used to recover the suburb.
+- Spelling variants of the same suburb (e.g. differences in hyphenation or abbreviations such as `EXT`/`EXTENSION`) are not yet mapped to a single name.
+
+### Validation of Analyses
+
+- `aggregate_reports_by_suburb_data()` counts the records per suburb and sums those counts across all suburbs.
+- The pipeline checks this automatically: if the sum of the suburb counts does not equal the number of records extracted, it raises a `ValueError` and the run fails.
+- Records with no valid suburb are kept under the `Unknown` label rather than dropped. With them included, the suburb counts add up to **584,665**, which matches the total number of "No Power" records downloaded from the API.
+- Without the `Unknown` label, pandas' `groupby` silently drops the **1,427** records that have no suburb in the raw data, and the counts add up to only **583,238**. After cleaning, **27,403** records are counted as `Unknown`, which makes it the second-largest group in the output after Philippi. Labelling them `Unknown` is what keeps the totals in line.
+- So no records are lost during the aggregation. As noted above, though, the records grouped under `Unknown` cannot be attributed to a specific suburb.
+- **Not yet done:** comparing the downloaded total with the count the API reports for the same filter (`returnCountOnly=true`) is not yet automated in the pipeline.

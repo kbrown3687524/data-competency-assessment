@@ -23,10 +23,12 @@ def aggregate_reports_by_suburb_data(df):                                       
     """
     Aggregates the number of service requests by suburb and returns a DataFrame with the counts.
     """
-    counts = df.groupby(df['Suburb'].fillna('Unknown')).size().reset_index(name='count')                                                   # This line groups the input DataFrame 'df' by the 'Suburb' column and calculates the size of each group (i.e., the number of records for each suburb). The result is a new DataFrame with two columns: 'Suburb' and 'count', where 'count' represents the number of service requests for each suburb. The 'reset_index' method is used to convert the groupby object back into a DataFrame, and the 'name' parameter specifies the name of the new column that will hold the counts.
-    total = counts['count'].sum()                                                                                    # This line calculates the total number of service requests by summing the 'count' column of the 'counts' DataFrame. The result is stored in the variable 'total'.
-    logger.info("Total number of service requests: %d", total)                                                      # This line logs an informational message that displays the total number of service requests calculated in the previous line. The '%d' is a placeholder for the integer value of 'total', which is passed as an argument to the logging function.
-    return total                                                                                                    # This line returns the 'counts' DataFrame, which contains the
+    counts = df.groupby(df['Suburb'].fillna('Unknown')).size().reset_index(name='count')                                                         # This line groups the input DataFrame 'df' by the 'Suburb' column and calculates the size of each group (i.e., the number of records for each suburb). The result is a new DataFrame with two columns: 'Suburb' and 'count', where 'count' represents the number of service requests for each suburb. The 'reset_index' method is used to convert the groupby object back into a DataFrame, and the 'name' parameter specifies the name of the new column that will hold the counts.
+    total = counts['count'].sum()                                                                                                                # This line calculates the total number of service requests by summing the 'count' column of the 'counts' DataFrame. The result is stored in the variable 'total'.
+    logger.info("Total number of service requests: %d", total)                                                                                  # This line logs an informational message that displays the total number of service requests calculated in the previous line. The '%d' is a placeholder for the integer value of 'total', which is passed as an argument to the logging function.
+    counts.sort_values('count', ascending=False).to_csv(Path(__file__).resolve().parent.parent / "data" / "no_power_by_suburb.csv", index=False) # Writes one row per suburb with its report count, highest count first.
+    if total != len(df): raise ValueError(f"Suburb counts ({total}) do not reconcile to records extracted ({len(df)})")                         # Validation: the suburb counts (including 'Unknown') must add up to the number of records extracted.
+    return total                                                                                                    
 
 def split_records_by_suburb(df):
     """
@@ -51,5 +53,6 @@ def transform(file_path):
     """
     # Read the data
     df = read_data(file_path)
+    df['Suburb'] = df['Suburb'].str.strip().str.replace(r'\s+', ' ', regex=True).str.upper().replace(r'^(0*|#|GENERIC TOWN 0+)$', pd.NA, regex=True)
     suburb_counts = aggregate_reports_by_suburb_data(df)
     split_records_by_suburb(df)
