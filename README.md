@@ -101,3 +101,43 @@ This option isn't available on every portal, so the Developer Tools approach is 
 pip install -r requirements.txt
 python code/challenge_part_1.py
 ```
+
+## Challenge Part 2 – Analysing Records by Suburb
+
+### Overview
+
+`code/challenge_part_2.py` reads the records downloaded in Part 1, aggregates the number of service requests per suburb, and splits the records into a separate CSV file for each suburb.
+
+### Input
+
+- `data/raw/0_Service_Requests_2023_until_20_May_2026.csv`: the output of `challenge_part_1.py`.
+- The path is built relative to the script's location (`Path(__file__).resolve().parent.parent`), so the script runs correctly from any working directory.
+
+### Functions
+
+| Function | Purpose |
+|---|---|
+| `read_data(file_path)` | Reads the CSV into a pandas DataFrame. |
+| `aggregate_reports_by_suburb_data(df)` | Groups records by `Suburb` and counts the requests per suburb, returning a DataFrame with `Suburb` and `count` columns. |
+| `split_records_by_suburb(df)` | Writes each suburb's records to its own CSV in `data/raw/suburb_records/`. |
+
+### Splitting records by suburb
+
+1. Records are grouped on the `Suburb` column. Missing suburb values are first replaced with `"Unknown"` (`df['Suburb'].fillna('Unknown')`), because pandas' `groupby` would otherwise drop those rows silently and the records would be lost.
+2. Each suburb name is converted into a safe filename with a regular expression (`re.sub(r'[^\w\-]', '', suburb)`). This removes any character that isn't a letter, digit, underscore or hyphen, such as spaces, `/`, `.` and `'`, since some of these aren't allowed in Windows filenames. If nothing is left after cleaning, the file is named `Unknown.csv`.
+3. Each group is saved as `data/raw/suburb_records/<Suburb>.csv`. Because these files sit inside `data/raw/`, they are git-ignored along with the rest of the raw data.
+
+### Logging
+
+Progress messages are written to the console and to `arcgis_fetch.log` using the same logging configuration as Part 1.
+
+### Data quality: the `Suburb` field
+
+> _In progress._ Findings and handling decisions for the `Suburb` field (missing or blank values, numeric placeholders such as `0`/`00`, inconsistent capitalisation, stray whitespace, spelling variants and physical addresses) will be documented here, including how many records each decision affected.
+
+### Running the script
+
+```bash
+python code/challenge_part_2.py
+```
+
