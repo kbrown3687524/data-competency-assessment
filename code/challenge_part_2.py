@@ -1,11 +1,9 @@
+#!/usr/bin/env python3
 import matplotlib.pyplot as plt
 import pandas as pd
-import numpy as np
 from pathlib import Path
 import re
 import logging
-
-file_path = Path(__file__).resolve().parent.parent / "data" / "raw" / "0_Service_Requests_2023_until_20_May_2026.csv"
 
 logger = logging.basicConfig(level = logging.INFO,                                                                  # This line sets up the basic configuration for logging. It specifies the logging level as INFO, which means that messages with a severity level of INFO and above will be logged.
     format = "%(asctime)s %(levelname)-8s %(message)s",                                                             # This line defines the format of the log messages. It includes the timestamp, the log level, and the actual log message. The timestamp is formatted to show the date and time.
@@ -55,7 +53,10 @@ def split_records_by_suburb(df):
     logger.info("Records split by suburb and saved to %s", output_dir)
 
 
-if __name__ == "__main__":
+def transform(file_path):
+    """
+    Transforms the data by aggregating reports by suburb and splitting records by suburb.
+    """
     # Read the data
     df = read_data(file_path)
     suburb_counts = aggregate_reports_by_suburb_data(df)

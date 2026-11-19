@@ -1,13 +1,15 @@
+#!/usr/bin/env python3
 import requests, time, logging
 import pandas as pd
 from pathlib import Path
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
+
 session = requests.Session()
 session.mount("https://", HTTPAdapter(
     max_retries=Retry(
-        total=5, 
+        total=10, 
         backoff_factor=1, 
         status_forcelist=[429, 500, 502, 503, 504],
         allowed_methods=['GET']
@@ -15,7 +17,7 @@ session.mount("https://", HTTPAdapter(
     ))
 
 base_url = "https://services6.arcgis.com/nyYfO9SxHU2ChQd9/ArcGIS/rest/services/Service_Requests_2023_until_20_May_2026/FeatureServer"
-raw_dir = Path(__file__).resolve().parent.parent / "data" / "raw"                                       # This line defines the path to the directory where raw data will be stored. It uses the 'Path' class from the 'pathlib' module to construct the path relative to the current script's location. The 'resolve()' method ensures that the path is absolute, and 'parent.parent' navigates up two levels in the directory structure to reach the desired location. The final path points to a "data/raw" directory, which is intended for storing raw data files fetched from the ArcGIS REST API.
+raw_dir = Path(__file__).resolve().parent / "data" / "raw"                                               # This line defines the path to the directory where raw data will be stored. It uses the 'Path' class from the 'pathlib' module to construct the path relative to the current script's location. The 'resolve()' method ensures that the path is absolute, and 'parent.parent' navigates up two levels in the directory structure to reach the desired location. The final path points to a "data/raw" directory, which is intended for storing raw data files fetched from the ArcGIS REST API.
 raw_dir.mkdir(parents=True, exist_ok=True)                                                              # This line creates the directory specified by 'raw_dir' if it does not already exist. The 'parents=True' argument allows for the creation of any necessary parent directories, and 'exist_ok=True' prevents an error from being raised if the directory already exists. This ensures that the directory structure is in place for storing raw data files.
 
 logger = logging.basicConfig(level = logging.INFO,
@@ -26,7 +28,7 @@ logger = logging.basicConfig(level = logging.INFO,
         logging.StreamHandler()
     ],
     )
-logger = logging.getLogger("arcgis_fetch")
+logger = logging.getLogger("logs/arcgis_fetch")
 
 def fetch_dataset_schema(base_url):
     """ 
@@ -116,7 +118,7 @@ def fetch_filtered_dataset_records(base_url, layer_id, where="1=1", page_size=10
         offset += len(features)                                                                          # This line increments the 'offset' by the number of features fetched in the current page. It prepares the offset for the next iteration of the loop, allowing the next page of records to be fetched.
     return pd.DataFrame(rows)                                                                            # This line converts the list of fetched records (rows) into a pandas DataFrame and returns it. The DataFrame provides a convenient tabular structure for further analysis and manipulation of the dataset records.
 
-if __name__ == "__main__":
+def fetch_dataset_metadata(base_url, layer_id):
     for item in fetch_dataset_schema(base_url):                                                          # This line calls the 'fetch_dataset_schema' function with the 'base_url' and iterates over each item (layer or table) in the returned list. It allows for processing each layer or table in the dataset schema.
         layer_id, layer_name = item["id"], item["name"]                                                  # This line extracts the 'id' and 'name' of the current layer or table from the item dictionary. The 'layer_id' is used to fetch records for that specific layer, and the 'layer_name' is used for display purposes.
         print(f"Fetching records for layer '{layer_name}' (ID: {layer_id})...")                          # This line prints a message indicating that records are being fetched for the current layer or table, including its name and ID. It provides feedback to the user about the progress of the data fetching process.
