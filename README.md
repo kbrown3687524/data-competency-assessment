@@ -141,3 +141,22 @@ Progress messages are written to the console and to `arcgis_fetch.log` using the
 python code/challenge_part_2.py
 ```
 
+
+### Data Quality Issues
+
+- The `Suburb` field has data quality issues. Suburb names aren't recorded consistently (differences in capitalisation, stray whitespace and spelling variants of the same suburb), and some entries are full street addresses rather than suburb names. Left as they are, these split a single suburb across several groups and make the per-suburb counts unreliable. There are several ways to handle this:
+
+1. **Relabel invalid values as `Unknown`.** Blank values, numeric placeholders (`0`, `00`, `000`) and street addresses are replaced with a single label such as `Unknown`. This keeps every record in the dataset, so overall totals stay accurate, but it loses the location information for those records, so they can't be attributed to a specific suburb.
+
+2. ** Standardizing. ** Values should be standardized according to a specific format which contributes towards processing. Ensuring that whitespace is stripped appropriately, capitalization is implemented correctly, and any variations in naming are mapped canonically to a single naming convention.
+
+3. **Suburb Recovery.** As there are additional fields within the dataset such as `Ward` which provides a set of coordinates, it it possible to infer the correct suburb through comparison to other records in the dataset or reference it against a set of established suburb boundaries for the City of Cape Town.
+
+4. **Removal of Records.** Dropping the records that are invalid is possibly the simplest solution, hwoever this does impact the true number of complaints, which may additionally impact the bias in certain suburbs.
+
+- **Final Decision:** I combined the first and second approaches by renaming and standardizing where possible to ensure accurate interpration of the dataset.
+
+
+### Validation of Analyses.
+
+- I had already included a function into the script to view the number of records per suburb and then count the total number of records accross all suburbs to see if they matched those within the original data at the API endpoint. From what I have calculated, this has caused no loss in records to work with, however as mentioned some information is lost.

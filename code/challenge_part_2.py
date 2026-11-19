@@ -33,7 +33,7 @@ def aggregate_reports_by_suburb_data(df):                                       
     """
     Aggregates the number of service requests by suburb and returns a DataFrame with the counts.
     """
-    counts = df.groupby('Suburb').size().reset_index(name='count')                                                   # This line groups the input DataFrame 'df' by the 'Suburb' column and calculates the size of each group (i.e., the number of records for each suburb). The result is a new DataFrame with two columns: 'Suburb' and 'count', where 'count' represents the number of service requests for each suburb. The 'reset_index' method is used to convert the groupby object back into a DataFrame, and the 'name' parameter specifies the name of the new column that will hold the counts.
+    counts = df.groupby(df['Suburb'].fillna('Unknown')).size().reset_index(name='count')                                                   # This line groups the input DataFrame 'df' by the 'Suburb' column and calculates the size of each group (i.e., the number of records for each suburb). The result is a new DataFrame with two columns: 'Suburb' and 'count', where 'count' represents the number of service requests for each suburb. The 'reset_index' method is used to convert the groupby object back into a DataFrame, and the 'name' parameter specifies the name of the new column that will hold the counts.
     total = counts['count'].sum()                                                                                    # This line calculates the total number of service requests by summing the 'count' column of the 'counts' DataFrame. The result is stored in the variable 'total'.
     logging.info("Total number of service requests: %d", total)                                                      # This line logs an informational message that displays the total number of service requests calculated in the previous line. The '%d' is a placeholder for the integer value of 'total', which is passed as an argument to the logging function.
     return total                                                                                                    # This line returns the 'counts' DataFrame, which contains the
@@ -58,5 +58,5 @@ def split_records_by_suburb(df):
 if __name__ == "__main__":
     # Read the data
     df = read_data(file_path)
-    #suburb_counts = aggregate_reports_by_suburb_data(df)
+    suburb_counts = aggregate_reports_by_suburb_data(df)
     split_records_by_suburb(df)

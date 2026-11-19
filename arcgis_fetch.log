@@ -1619,3 +1619,9 @@ requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='services6.arcgis.com'
 2026-11-19 07-56-19 INFO     Layer 0: 584665 records fetched so far
 2026-11-19 07-56-19 INFO     Layer 0: 584,665 records downloaded
 2026-11-19 08-50-14 INFO     Records split by suburb and saved to C:\Users\ingwe\OneDrive\Desktop\data-competency-assessment\data\raw\suburb_records
+2026-11-19 09-04-56 INFO     Total number of service requests: 583238
+2026-11-19 09-05-03 INFO     Records split by suburb and saved to C:\Users\ingwe\OneDrive\Desktop\data-competency-assessment\data\raw\suburb_records
+2026-11-19 09-22-29 INFO     Total number of service requests: 583238
+2026-11-19 09-22-38 INFO     Records split by suburb and saved to C:\Users\ingwe\OneDrive\Desktop\data-competency-assessment\data\raw\suburb_records
+2026-11-19 09-26-24 INFO     Total number of service requests: 584665
+2026-11-19 09-26-31 INFO     Records split by suburb and saved to C:\Users\ingwe\OneDrive\Desktop\data-competency-assessment\data\raw\suburb_records
