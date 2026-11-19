@@ -1,0 +1,13 @@
+# Raw extracts are large and re-creatable from the API - never commit them.
+data/raw/*
+!data/raw/.gitkeep
+
+# Logs
+logs/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/

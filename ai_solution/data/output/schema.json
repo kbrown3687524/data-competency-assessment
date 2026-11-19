@@ -1,0 +1,108 @@
+{
+  "layer_name": "Service_Requests_2023_until_20_May_2026",
+  "layer_type": "Table",
+  "geometry_type": null,
+  "object_id_field": "ObjectId",
+  "max_record_count": 1000,
+  "supports_pagination": true,
+  "fields": [
+    {
+      "name": "Sub_Council",
+      "alias": "Sub Council",
+      "type": "esriFieldTypeString",
+      "length": 4000,
+      "nullable": true
+    },
+    {
+      "name": "Ward",
+      "alias": "Ward",
+      "type": "esriFieldTypeString",
+      "length": 256,
+      "nullable": true
+    },
+    {
+      "name": "Suburb",
+      "alias": "Suburb",
+      "type": "esriFieldTypeString",
+      "length": 4000,
+      "nullable": true
+    },
+    {
+      "name": "C3_Complaint_Type",
+      "alias": "C3 Complaint Type",
+      "type": "esriFieldTypeString",
+      "length": 4000,
+      "nullable": true
+    },
+    {
+      "name": "Work_Center",
+      "alias": "Work Center",
+      "type": "esriFieldTypeString",
+      "length": 4000,
+      "nullable": true
+    },
+    {
+      "name": "Notification",
+      "alias": "Notification",
+      "type": "esriFieldTypeInteger",
+      "length": null,
+      "nullable": true
+    },
+    {
+      "name": "Notification_type",
+      "alias": "Notification type",
+      "type": "esriFieldTypeString",
+      "length": 4000,
+      "nullable": true
+    },
+    {
+      "name": "X_Y_Co_ordinate_1",
+      "alias": "X-Y Co ordinate 1",
+      "type": "esriFieldTypeDouble",
+      "length": null,
+      "nullable": true
+    },
+    {
+      "name": "X_Y_Co_ordinate_2",
+      "alias": "X-Y Co ordinate 2",
+      "type": "esriFieldTypeDouble",
+      "length": null,
+      "nullable": true
+    },
+    {
+      "name": "Created_On_Date",
+      "alias": "Created On Date",
+      "type": "esriFieldTypeDate",
+      "length": 8,
+      "nullable": true
+    },
+    {
+      "name": "Changed_on",
+      "alias": "Changed on",
+      "type": "esriFieldTypeDate",
+      "length": 8,
+      "nullable": true
+    },
+    {
+      "name": "Completed_Date",
+      "alias": "Completed Date",
+      "type": "esriFieldTypeDate",
+      "length": 8,
+      "nullable": true
+    },
+    {
+      "name": "Notifications_Created",
+      "alias": "Notifications Created",
+      "type": "esriFieldTypeInteger",
+      "length": null,
+      "nullable": true
+    },
+    {
+      "name": "ObjectId",
+      "alias": "ObjectId",
+      "type": "esriFieldTypeOID",
+      "length": null,
+      "nullable": false
+    }
+  ]
+}

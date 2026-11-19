@@ -1,0 +1,89 @@
+{
+  "total_records": 584665,
+  "distinct_suburbs_after_cleaning": 4814,
+  "unknown_suburb_records": 27405,
+  "suburb_quality_issues": {
+    "records": 584665,
+    "null": 1427,
+    "blank_or_whitespace_only": 145,
+    "placeholder_no_letters": 25674,
+    "literal_unknown": 159,
+    "leading_or_trailing_whitespace": 802,
+    "not_upper_case": 63615,
+    "contains_digit": 7338,
+    "distinct_raw_values": 7919
+  },
+  "all_passed": true,
+  "checks": [
+    {
+      "check": "suburb counts sum to total records",
+      "passed": true,
+      "expected": 584665,
+      "actual": 584665,
+      "note": ""
+    },
+    {
+      "check": "UNKNOWN bucket equals records with no usable suburb",
+      "passed": true,
+      "expected": 27405,
+      "actual": 27405,
+      "note": "null + blank + placeholder (no letters, e.g. '#') + literal 'Unknown'"
+    },
+    {
+      "check": "known-suburb counts + UNKNOWN reconcile to total",
+      "passed": true,
+      "expected": 584665,
+      "actual": 584665,
+      "note": ""
+    },
+    {
+      "check": "one row per suburb",
+      "passed": true,
+      "expected": true,
+      "actual": true,
+      "note": ""
+    },
+    {
+      "check": "sorted by count descending",
+      "passed": true,
+      "expected": true,
+      "actual": true,
+      "note": ""
+    },
+    {
+      "check": "no duplicate ObjectIds in extract",
+      "passed": true,
+      "expected": 584665,
+      "actual": 584665,
+      "note": ""
+    },
+    {
+      "check": "every record is a 'No Power' complaint",
+      "passed": true,
+      "expected": 584665,
+      "actual": 584665,
+      "note": ""
+    },
+    {
+      "check": "records extracted equal API count at extract time",
+      "passed": true,
+      "expected": 584665,
+      "actual": 584665,
+      "note": ""
+    },
+    {
+      "check": "records extracted equal live API count",
+      "passed": true,
+      "expected": 584665,
+      "actual": 584665,
+      "note": ""
+    },
+    {
+      "check": "raw per-suburb counts match server-side group-by",
+      "passed": true,
+      "expected": [],
+      "actual": [],
+      "note": "6224 server groups vs 6224 local groups (case-insensitive)"
+    }
+  ]
+}
