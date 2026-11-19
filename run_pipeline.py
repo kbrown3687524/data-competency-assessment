@@ -3,17 +3,18 @@ from code import challenge_part_1, challenge_part_2
 from pathlib import Path
 
 base_url = "https://services6.arcgis.com/nyYfO9SxHU2ChQd9/ArcGIS/rest/services/Service_Requests_2023_until_20_May_2026/FeatureServer"
-raw_dir = Path(__file__).resolve().parent / "data" / "raw"                                               # This line defines the path to the directory where raw data will be stored. It uses the 'Path' class from the 'pathlib' module to construct the path relative to the current script's location. The 'resolve()' method ensures that the path is absolute, and 'parent.parent' navigates up two levels in the directory structure to reach the desired location. The final path points to a "data/raw" directory, which is intended for storing raw data files fetched from the ArcGIS REST API.
-raw_dir.mkdir(parents=True, exist_ok=True)                                                              # This line creates the directory specified by 'raw_dir' if it does not already exist. The 'parents=True' argument allows for the creation of any necessary parent directories, and 'exist_ok=True' prevents an error from being raised if the directory already exists. This ensures that the directory structure is in place for storing raw data files.
-
+raw_dir = Path(__file__).resolve().parent / "data" / "raw"                                                  # This line defines the path to the directory where raw data will be stored. It uses the 'Path' class from the 'pathlib' module to construct the path relative to the current script's location. The 'resolve()' method ensures that the path is absolute, and 'parent.parent' navigates up two levels in the directory structure to reach the desired location. The final path points to a "data/raw" directory, which is intended for storing raw data files fetched from the ArcGIS REST API.
+raw_dir.mkdir(parents=True, exist_ok=True)                                                                  # This line creates the directory specified by 'raw_dir' if it does not already exist. The 'parents=True' argument allows for the creation of any necessary parent directories, and 'exist_ok=True' prevents an error from being raised if the directory already exists. This ensures that the directory structure is in place for storing raw data files.
+log_dir = Path(__file__).resolve().parent / "logs"                                                          # This line defines the path to the directory where log files will be stored. It uses the 'Path' class from the 'pathlib' module to construct the path relative to the current script's location. The 'resolve()' method ensures that the path is absolute, and 'parent.parent' navigates up two levels in the directory structure to reach the desired location. The final path points to a "logs" directory, which is intended for storing log files generated during the execution of the pipeline.
 
 def logging_setup():
+    log_dir.mkdir(parents=True, exist_ok=True)
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s %(levelname)-8s %(name)s: %(message)s",
         handlers=[
             logging.StreamHandler(),
-            logging.FileHandler("logs/pipeline.log", encoding="utf-8"),
+            logging.FileHandler(f"{raw_dir}/logs/pipeline.log", encoding="utf-8"),
         ],
     )
 

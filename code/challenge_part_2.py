@@ -5,15 +5,7 @@ from pathlib import Path
 import re
 import logging
 
-logger = logging.basicConfig(level = logging.INFO,                                                                  # This line sets up the basic configuration for logging. It specifies the logging level as INFO, which means that messages with a severity level of INFO and above will be logged.
-    format = "%(asctime)s %(levelname)-8s %(message)s",                                                             # This line defines the format of the log messages. It includes the timestamp, the log level, and the actual log message. The timestamp is formatted to show the date and time.
-    datefmt = "%Y-%m-%d %H-%M-%S",                                                                                  # This line specifies the format of the timestamp in the log messages. It shows the year, month, day, hour, minute, and second.
-    handlers=[                                                                                                      
-        logging.FileHandler("arcgis_fetch.log", encoding="utf-8"),                                                  # This line adds a file handler to the logging configuration. It specifies that log messages will be written to a file named "arcgis_fetch.log" with UTF-8 encoding. This allows for persistent logging of messages to a file.
-        logging.StreamHandler()                                                                                     # This line adds a stream handler to the logging configuration. It specifies that log messages will also be output to the console (standard output). This allows for real-time monitoring of log messages while the program is running.
-    ],
-    )
-logger = logging.getLogger("arcgis_fetch")
+logger = logging.getLogger(__name__)
 
 def read_data(file_path):                                                                                           # This line defines a function named 'read_data' that takes a single parameter 'file_path'. The purpose of this function is to read CSV data from the specified file path and return it as a pandas DataFrame.
     """
@@ -33,7 +25,7 @@ def aggregate_reports_by_suburb_data(df):                                       
     """
     counts = df.groupby(df['Suburb'].fillna('Unknown')).size().reset_index(name='count')                                                   # This line groups the input DataFrame 'df' by the 'Suburb' column and calculates the size of each group (i.e., the number of records for each suburb). The result is a new DataFrame with two columns: 'Suburb' and 'count', where 'count' represents the number of service requests for each suburb. The 'reset_index' method is used to convert the groupby object back into a DataFrame, and the 'name' parameter specifies the name of the new column that will hold the counts.
     total = counts['count'].sum()                                                                                    # This line calculates the total number of service requests by summing the 'count' column of the 'counts' DataFrame. The result is stored in the variable 'total'.
-    logging.info("Total number of service requests: %d", total)                                                      # This line logs an informational message that displays the total number of service requests calculated in the previous line. The '%d' is a placeholder for the integer value of 'total', which is passed as an argument to the logging function.
+    logger.info("Total number of service requests: %d", total)                                                      # This line logs an informational message that displays the total number of service requests calculated in the previous line. The '%d' is a placeholder for the integer value of 'total', which is passed as an argument to the logging function.
     return total                                                                                                    # This line returns the 'counts' DataFrame, which contains the
 
 def split_records_by_suburb(df):
