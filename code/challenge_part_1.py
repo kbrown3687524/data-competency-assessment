@@ -24,7 +24,7 @@ def fetch_dataset_schema(base_url):
     """
     logger.info("Fetching schema from %s", base_url)                                                                 # This line logs an informational message indicating that the dataset schema is being fetched from the specified base URL. It provides feedback to the user about the progress of the data fetching process.
     try:
-        r = requests.get(f"{base_url}/layers", params={"f": "json"}, timeout=30)                         # This line fetches the dataset schema from the ArcGIS REST API using a GET request. The 'f' parameter specifies the format of the response, which is set to 'json'. The timeout is set to 30 seconds to prevent hanging requests.
+        r = requests.get(f"{base_url}/layers", params={"f": "json"}, timeout=3000)                         # This line fetches the dataset schema from the ArcGIS REST API using a GET request. The 'f' parameter specifies the format of the response, which is set to 'json'. The timeout is set to 30 seconds to prevent hanging requests.
         r.raise_for_status()       
     except requests.RequestException:
         logger.exception("HTTP request for schema failed")                                               # logger.exception logs at ERROR level and includes the traceback.

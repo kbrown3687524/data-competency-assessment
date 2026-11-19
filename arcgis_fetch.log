@@ -10,3 +10,474 @@
 2026-11-19 07-11-30 INFO     Fetching schema from https://services6.arcgis.com/nyYfO9SxHU2ChQd9/ArcGIS/rest/services/Service_Requests_2023_until_20_May_2026/FeatureServer/0/query
 2026-11-19 07-14-01 INFO     Fetching schema from https://services6.arcgis.com/nyYfO9SxHU2ChQd9/ArcGIS/rest/services/Service_Requests_2023_until_20_May_2026/FeatureServer
 2026-11-19 07-14-01 INFO     Fetching schema from https://services6.arcgis.com/nyYfO9SxHU2ChQd9/ArcGIS/rest/services/Service_Requests_2023_until_20_May_2026/FeatureServer/0/query
+2026-11-19 07-16-05 INFO     Fetching schema from https://services6.arcgis.com/nyYfO9SxHU2ChQd9/ArcGIS/rest/services/Service_Requests_2023_until_20_May_2026/FeatureServer
+2026-11-19 07-16-06 INFO     Fetching schema from https://services6.arcgis.com/nyYfO9SxHU2ChQd9/ArcGIS/rest/services/Service_Requests_2023_until_20_May_2026/FeatureServer/0/query
+2026-11-19 07-16-06 INFO     Layer 0: 1000 records fetched so far
+2026-11-19 07-16-07 INFO     Layer 0: 2000 records fetched so far
+2026-11-19 07-16-07 INFO     Layer 0: 3000 records fetched so far
+2026-11-19 07-16-07 INFO     Layer 0: 4000 records fetched so far
+2026-11-19 07-16-08 INFO     Layer 0: 5000 records fetched so far
+2026-11-19 07-16-08 INFO     Layer 0: 6000 records fetched so far
+2026-11-19 07-16-09 INFO     Layer 0: 7000 records fetched so far
+2026-11-19 07-16-09 INFO     Layer 0: 8000 records fetched so far
+2026-11-19 07-16-10 INFO     Layer 0: 9000 records fetched so far
+2026-11-19 07-16-10 INFO     Layer 0: 10000 records fetched so far
+2026-11-19 07-16-11 INFO     Layer 0: 11000 records fetched so far
+2026-11-19 07-16-12 INFO     Layer 0: 12000 records fetched so far
+2026-11-19 07-16-12 INFO     Layer 0: 13000 records fetched so far
+2026-11-19 07-16-13 INFO     Layer 0: 14000 records fetched so far
+2026-11-19 07-16-13 INFO     Layer 0: 15000 records fetched so far
+2026-11-19 07-16-14 INFO     Layer 0: 16000 records fetched so far
+2026-11-19 07-16-14 INFO     Layer 0: 17000 records fetched so far
+2026-11-19 07-16-15 INFO     Layer 0: 18000 records fetched so far
+2026-11-19 07-16-15 INFO     Layer 0: 19000 records fetched so far
+2026-11-19 07-16-16 INFO     Layer 0: 20000 records fetched so far
+2026-11-19 07-16-16 INFO     Layer 0: 21000 records fetched so far
+2026-11-19 07-16-17 INFO     Layer 0: 22000 records fetched so far
+2026-11-19 07-16-17 INFO     Layer 0: 23000 records fetched so far
+2026-11-19 07-16-18 INFO     Layer 0: 24000 records fetched so far
+2026-11-19 07-16-18 INFO     Layer 0: 25000 records fetched so far
+2026-11-19 07-16-19 INFO     Layer 0: 26000 records fetched so far
+2026-11-19 07-16-19 INFO     Layer 0: 27000 records fetched so far
+2026-11-19 07-16-20 INFO     Layer 0: 28000 records fetched so far
+2026-11-19 07-16-21 INFO     Layer 0: 29000 records fetched so far
+2026-11-19 07-16-22 INFO     Layer 0: 30000 records fetched so far
+2026-11-19 07-16-22 INFO     Layer 0: 31000 records fetched so far
+2026-11-19 07-16-23 INFO     Layer 0: 32000 records fetched so far
+2026-11-19 07-16-24 INFO     Layer 0: 33000 records fetched so far
+2026-11-19 07-16-24 INFO     Layer 0: 34000 records fetched so far
+2026-11-19 07-16-24 INFO     Layer 0: 35000 records fetched so far
+2026-11-19 07-16-25 INFO     Layer 0: 36000 records fetched so far
+2026-11-19 07-16-25 INFO     Layer 0: 37000 records fetched so far
+2026-11-19 07-16-25 INFO     Layer 0: 38000 records fetched so far
+2026-11-19 07-16-26 INFO     Layer 0: 39000 records fetched so far
+2026-11-19 07-16-27 INFO     Layer 0: 40000 records fetched so far
+2026-11-19 07-16-27 INFO     Layer 0: 41000 records fetched so far
+2026-11-19 07-16-28 INFO     Layer 0: 42000 records fetched so far
+2026-11-19 07-16-28 INFO     Layer 0: 43000 records fetched so far
+2026-11-19 07-16-29 INFO     Layer 0: 44000 records fetched so far
+2026-11-19 07-16-29 INFO     Layer 0: 45000 records fetched so far
+2026-11-19 07-16-30 INFO     Layer 0: 46000 records fetched so far
+2026-11-19 07-16-31 INFO     Layer 0: 47000 records fetched so far
+2026-11-19 07-16-31 INFO     Layer 0: 48000 records fetched so far
+2026-11-19 07-16-32 INFO     Layer 0: 49000 records fetched so far
+2026-11-19 07-16-33 INFO     Layer 0: 50000 records fetched so far
+2026-11-19 07-16-33 INFO     Layer 0: 51000 records fetched so far
+2026-11-19 07-16-34 INFO     Layer 0: 52000 records fetched so far
+2026-11-19 07-16-35 INFO     Layer 0: 53000 records fetched so far
+2026-11-19 07-16-36 INFO     Layer 0: 54000 records fetched so far
+2026-11-19 07-16-36 INFO     Layer 0: 55000 records fetched so far
+2026-11-19 07-16-36 INFO     Layer 0: 56000 records fetched so far
+2026-11-19 07-16-37 INFO     Layer 0: 57000 records fetched so far
+2026-11-19 07-16-37 INFO     Layer 0: 58000 records fetched so far
+2026-11-19 07-16-38 INFO     Layer 0: 59000 records fetched so far
+2026-11-19 07-16-39 INFO     Layer 0: 60000 records fetched so far
+2026-11-19 07-16-40 INFO     Layer 0: 61000 records fetched so far
+2026-11-19 07-16-40 INFO     Layer 0: 62000 records fetched so far
+2026-11-19 07-16-41 INFO     Layer 0: 63000 records fetched so far
+2026-11-19 07-16-41 INFO     Layer 0: 64000 records fetched so far
+2026-11-19 07-16-42 INFO     Layer 0: 65000 records fetched so far
+2026-11-19 07-16-43 INFO     Layer 0: 66000 records fetched so far
+2026-11-19 07-16-43 INFO     Layer 0: 67000 records fetched so far
+2026-11-19 07-16-44 INFO     Layer 0: 68000 records fetched so far
+2026-11-19 07-16-45 INFO     Layer 0: 69000 records fetched so far
+2026-11-19 07-16-46 INFO     Layer 0: 70000 records fetched so far
+2026-11-19 07-16-46 INFO     Layer 0: 71000 records fetched so far
+2026-11-19 07-16-48 INFO     Layer 0: 72000 records fetched so far
+2026-11-19 07-16-50 INFO     Layer 0: 73000 records fetched so far
+2026-11-19 07-16-51 INFO     Layer 0: 74000 records fetched so far
+2026-11-19 07-16-51 INFO     Layer 0: 75000 records fetched so far
+2026-11-19 07-16-51 INFO     Layer 0: 76000 records fetched so far
+2026-11-19 07-16-52 INFO     Layer 0: 77000 records fetched so far
+2026-11-19 07-16-52 INFO     Layer 0: 78000 records fetched so far
+2026-11-19 07-16-53 INFO     Layer 0: 79000 records fetched so far
+2026-11-19 07-16-53 INFO     Layer 0: 80000 records fetched so far
+2026-11-19 07-16-54 INFO     Layer 0: 81000 records fetched so far
+2026-11-19 07-16-54 INFO     Layer 0: 82000 records fetched so far
+2026-11-19 07-16-55 INFO     Layer 0: 83000 records fetched so far
+2026-11-19 07-16-56 INFO     Layer 0: 84000 records fetched so far
+2026-11-19 07-16-56 INFO     Layer 0: 85000 records fetched so far
+2026-11-19 07-16-57 INFO     Layer 0: 86000 records fetched so far
+2026-11-19 07-16-57 INFO     Layer 0: 87000 records fetched so far
+2026-11-19 07-16-58 INFO     Layer 0: 88000 records fetched so far
+2026-11-19 07-16-58 INFO     Layer 0: 89000 records fetched so far
+2026-11-19 07-16-59 INFO     Layer 0: 90000 records fetched so far
+2026-11-19 07-17-00 INFO     Layer 0: 91000 records fetched so far
+2026-11-19 07-17-01 INFO     Layer 0: 92000 records fetched so far
+2026-11-19 07-17-01 INFO     Layer 0: 93000 records fetched so far
+2026-11-19 07-17-02 INFO     Layer 0: 94000 records fetched so far
+2026-11-19 07-17-02 INFO     Layer 0: 95000 records fetched so far
+2026-11-19 07-17-03 INFO     Layer 0: 96000 records fetched so far
+2026-11-19 07-17-04 INFO     Layer 0: 97000 records fetched so far
+2026-11-19 07-17-04 INFO     Layer 0: 98000 records fetched so far
+2026-11-19 07-17-05 INFO     Layer 0: 99000 records fetched so far
+2026-11-19 07-17-06 INFO     Layer 0: 100000 records fetched so far
+2026-11-19 07-17-06 INFO     Layer 0: 101000 records fetched so far
+2026-11-19 07-17-07 INFO     Layer 0: 102000 records fetched so far
+2026-11-19 07-17-08 INFO     Layer 0: 103000 records fetched so far
+2026-11-19 07-17-08 INFO     Layer 0: 104000 records fetched so far
+2026-11-19 07-17-08 INFO     Layer 0: 105000 records fetched so far
+2026-11-19 07-17-10 INFO     Layer 0: 106000 records fetched so far
+2026-11-19 07-17-11 INFO     Layer 0: 107000 records fetched so far
+2026-11-19 07-17-11 INFO     Layer 0: 108000 records fetched so far
+2026-11-19 07-17-12 INFO     Layer 0: 109000 records fetched so far
+2026-11-19 07-17-13 INFO     Layer 0: 110000 records fetched so far
+2026-11-19 07-17-14 INFO     Layer 0: 111000 records fetched so far
+2026-11-19 07-17-15 INFO     Layer 0: 112000 records fetched so far
+2026-11-19 07-17-16 INFO     Layer 0: 113000 records fetched so far
+2026-11-19 07-17-17 INFO     Layer 0: 114000 records fetched so far
+2026-11-19 07-17-18 INFO     Layer 0: 115000 records fetched so far
+2026-11-19 07-17-18 INFO     Layer 0: 116000 records fetched so far
+2026-11-19 07-17-18 INFO     Layer 0: 117000 records fetched so far
+2026-11-19 07-17-19 INFO     Layer 0: 118000 records fetched so far
+2026-11-19 07-17-20 INFO     Layer 0: 119000 records fetched so far
+2026-11-19 07-17-21 INFO     Layer 0: 120000 records fetched so far
+2026-11-19 07-17-22 INFO     Layer 0: 121000 records fetched so far
+2026-11-19 07-17-24 INFO     Layer 0: 122000 records fetched so far
+2026-11-19 07-17-25 INFO     Layer 0: 123000 records fetched so far
+2026-11-19 07-17-26 INFO     Layer 0: 124000 records fetched so far
+2026-11-19 07-17-27 INFO     Layer 0: 125000 records fetched so far
+2026-11-19 07-17-29 INFO     Layer 0: 126000 records fetched so far
+2026-11-19 07-17-30 INFO     Layer 0: 127000 records fetched so far
+2026-11-19 07-17-32 INFO     Layer 0: 128000 records fetched so far
+2026-11-19 07-17-33 INFO     Layer 0: 129000 records fetched so far
+2026-11-19 07-17-34 INFO     Layer 0: 130000 records fetched so far
+2026-11-19 07-17-35 INFO     Layer 0: 131000 records fetched so far
+2026-11-19 07-17-36 INFO     Layer 0: 132000 records fetched so far
+2026-11-19 07-17-37 INFO     Layer 0: 133000 records fetched so far
+2026-11-19 07-17-39 INFO     Layer 0: 134000 records fetched so far
+2026-11-19 07-17-40 INFO     Layer 0: 135000 records fetched so far
+2026-11-19 07-17-41 INFO     Layer 0: 136000 records fetched so far
+2026-11-19 07-17-42 INFO     Layer 0: 137000 records fetched so far
+2026-11-19 07-17-43 INFO     Layer 0: 138000 records fetched so far
+2026-11-19 07-17-44 INFO     Layer 0: 139000 records fetched so far
+2026-11-19 07-17-45 INFO     Layer 0: 140000 records fetched so far
+2026-11-19 07-17-47 INFO     Layer 0: 141000 records fetched so far
+2026-11-19 07-17-48 INFO     Layer 0: 142000 records fetched so far
+2026-11-19 07-17-49 INFO     Layer 0: 143000 records fetched so far
+2026-11-19 07-17-55 INFO     Layer 0: 144000 records fetched so far
+2026-11-19 07-17-56 INFO     Layer 0: 145000 records fetched so far
+2026-11-19 07-17-57 INFO     Layer 0: 146000 records fetched so far
+2026-11-19 07-18-01 INFO     Layer 0: 147000 records fetched so far
+2026-11-19 07-18-03 INFO     Layer 0: 148000 records fetched so far
+2026-11-19 07-18-04 INFO     Layer 0: 149000 records fetched so far
+2026-11-19 07-18-05 INFO     Layer 0: 150000 records fetched so far
+2026-11-19 07-18-07 INFO     Layer 0: 151000 records fetched so far
+2026-11-19 07-18-08 INFO     Layer 0: 152000 records fetched so far
+2026-11-19 07-18-09 INFO     Layer 0: 153000 records fetched so far
+2026-11-19 07-18-11 INFO     Layer 0: 154000 records fetched so far
+2026-11-19 07-18-12 INFO     Layer 0: 155000 records fetched so far
+2026-11-19 07-18-13 INFO     Layer 0: 156000 records fetched so far
+2026-11-19 07-18-15 INFO     Layer 0: 157000 records fetched so far
+2026-11-19 07-18-16 INFO     Layer 0: 158000 records fetched so far
+2026-11-19 07-18-17 INFO     Layer 0: 159000 records fetched so far
+2026-11-19 07-18-19 INFO     Layer 0: 160000 records fetched so far
+2026-11-19 07-18-20 INFO     Layer 0: 161000 records fetched so far
+2026-11-19 07-18-22 INFO     Layer 0: 162000 records fetched so far
+2026-11-19 07-18-23 INFO     Layer 0: 163000 records fetched so far
+2026-11-19 07-18-24 INFO     Layer 0: 164000 records fetched so far
+2026-11-19 07-18-26 INFO     Layer 0: 165000 records fetched so far
+2026-11-19 07-18-27 INFO     Layer 0: 166000 records fetched so far
+2026-11-19 07-18-28 INFO     Layer 0: 167000 records fetched so far
+2026-11-19 07-18-30 INFO     Layer 0: 168000 records fetched so far
+2026-11-19 07-18-31 INFO     Layer 0: 169000 records fetched so far
+2026-11-19 07-18-33 INFO     Layer 0: 170000 records fetched so far
+2026-11-19 07-18-35 INFO     Layer 0: 171000 records fetched so far
+2026-11-19 07-18-38 INFO     Layer 0: 172000 records fetched so far
+2026-11-19 07-18-39 INFO     Layer 0: 173000 records fetched so far
+2026-11-19 07-18-41 INFO     Layer 0: 174000 records fetched so far
+2026-11-19 07-18-42 INFO     Layer 0: 175000 records fetched so far
+2026-11-19 07-18-44 INFO     Layer 0: 176000 records fetched so far
+2026-11-19 07-18-45 INFO     Layer 0: 177000 records fetched so far
+2026-11-19 07-18-47 INFO     Layer 0: 178000 records fetched so far
+2026-11-19 07-18-48 INFO     Layer 0: 179000 records fetched so far
+2026-11-19 07-18-50 INFO     Layer 0: 180000 records fetched so far
+2026-11-19 07-18-52 INFO     Layer 0: 181000 records fetched so far
+2026-11-19 07-18-54 INFO     Layer 0: 182000 records fetched so far
+2026-11-19 07-18-55 INFO     Layer 0: 183000 records fetched so far
+2026-11-19 07-18-57 INFO     Layer 0: 184000 records fetched so far
+2026-11-19 07-18-59 INFO     Layer 0: 185000 records fetched so far
+2026-11-19 07-19-00 INFO     Layer 0: 186000 records fetched so far
+2026-11-19 07-19-02 INFO     Layer 0: 187000 records fetched so far
+2026-11-19 07-19-04 INFO     Layer 0: 188000 records fetched so far
+2026-11-19 07-19-06 INFO     Layer 0: 189000 records fetched so far
+2026-11-19 07-19-07 INFO     Layer 0: 190000 records fetched so far
+2026-11-19 07-19-09 INFO     Layer 0: 191000 records fetched so far
+2026-11-19 07-19-11 INFO     Layer 0: 192000 records fetched so far
+2026-11-19 07-19-13 INFO     Layer 0: 193000 records fetched so far
+2026-11-19 07-19-15 INFO     Layer 0: 194000 records fetched so far
+2026-11-19 07-19-16 INFO     Layer 0: 195000 records fetched so far
+2026-11-19 07-19-18 INFO     Layer 0: 196000 records fetched so far
+2026-11-19 07-19-19 INFO     Layer 0: 197000 records fetched so far
+2026-11-19 07-19-21 INFO     Layer 0: 198000 records fetched so far
+2026-11-19 07-19-22 INFO     Layer 0: 199000 records fetched so far
+2026-11-19 07-19-24 INFO     Layer 0: 200000 records fetched so far
+2026-11-19 07-19-26 INFO     Layer 0: 201000 records fetched so far
+2026-11-19 07-19-27 INFO     Layer 0: 202000 records fetched so far
+2026-11-19 07-19-30 INFO     Layer 0: 203000 records fetched so far
+2026-11-19 07-19-32 INFO     Layer 0: 204000 records fetched so far
+2026-11-19 07-19-34 INFO     Layer 0: 205000 records fetched so far
+2026-11-19 07-19-35 INFO     Layer 0: 206000 records fetched so far
+2026-11-19 07-19-37 INFO     Layer 0: 207000 records fetched so far
+2026-11-19 07-19-39 INFO     Layer 0: 208000 records fetched so far
+2026-11-19 07-19-41 INFO     Layer 0: 209000 records fetched so far
+2026-11-19 07-19-42 INFO     Layer 0: 210000 records fetched so far
+2026-11-19 07-19-44 INFO     Layer 0: 211000 records fetched so far
+2026-11-19 07-19-46 INFO     Layer 0: 212000 records fetched so far
+2026-11-19 07-19-49 INFO     Layer 0: 213000 records fetched so far
+2026-11-19 07-19-51 INFO     Layer 0: 214000 records fetched so far
+2026-11-19 07-19-52 INFO     Layer 0: 215000 records fetched so far
+2026-11-19 07-19-54 INFO     Layer 0: 216000 records fetched so far
+2026-11-19 07-19-56 INFO     Layer 0: 217000 records fetched so far
+2026-11-19 07-19-58 INFO     Layer 0: 218000 records fetched so far
+2026-11-19 07-19-59 INFO     Layer 0: 219000 records fetched so far
+2026-11-19 07-20-01 INFO     Layer 0: 220000 records fetched so far
+2026-11-19 07-20-03 INFO     Layer 0: 221000 records fetched so far
+2026-11-19 07-20-04 INFO     Layer 0: 222000 records fetched so far
+2026-11-19 07-20-06 INFO     Layer 0: 223000 records fetched so far
+2026-11-19 07-20-07 INFO     Layer 0: 224000 records fetched so far
+2026-11-19 07-20-09 INFO     Layer 0: 225000 records fetched so far
+2026-11-19 07-20-11 INFO     Layer 0: 226000 records fetched so far
+2026-11-19 07-20-13 INFO     Layer 0: 227000 records fetched so far
+2026-11-19 07-20-14 INFO     Layer 0: 228000 records fetched so far
+2026-11-19 07-20-17 INFO     Layer 0: 229000 records fetched so far
+2026-11-19 07-20-19 INFO     Layer 0: 230000 records fetched so far
+2026-11-19 07-20-21 INFO     Layer 0: 231000 records fetched so far
+2026-11-19 07-20-23 INFO     Layer 0: 232000 records fetched so far
+2026-11-19 07-20-25 INFO     Layer 0: 233000 records fetched so far
+2026-11-19 07-20-27 INFO     Layer 0: 234000 records fetched so far
+2026-11-19 07-20-29 INFO     Layer 0: 235000 records fetched so far
+2026-11-19 07-20-31 INFO     Layer 0: 236000 records fetched so far
+2026-11-19 07-20-33 INFO     Layer 0: 237000 records fetched so far
+2026-11-19 07-20-36 INFO     Layer 0: 238000 records fetched so far
+2026-11-19 07-20-38 INFO     Layer 0: 239000 records fetched so far
+2026-11-19 07-20-41 INFO     Layer 0: 240000 records fetched so far
+2026-11-19 07-20-44 INFO     Layer 0: 241000 records fetched so far
+2026-11-19 07-20-47 INFO     Layer 0: 242000 records fetched so far
+2026-11-19 07-20-49 INFO     Layer 0: 243000 records fetched so far
+2026-11-19 07-20-52 INFO     Layer 0: 244000 records fetched so far
+2026-11-19 07-20-54 INFO     Layer 0: 245000 records fetched so far
+2026-11-19 07-20-57 INFO     Layer 0: 246000 records fetched so far
+2026-11-19 07-21-00 INFO     Layer 0: 247000 records fetched so far
+2026-11-19 07-21-03 INFO     Layer 0: 248000 records fetched so far
+2026-11-19 07-21-04 INFO     Layer 0: 249000 records fetched so far
+2026-11-19 07-21-06 INFO     Layer 0: 250000 records fetched so far
+2026-11-19 07-21-08 INFO     Layer 0: 251000 records fetched so far
+2026-11-19 07-21-10 INFO     Layer 0: 252000 records fetched so far
+2026-11-19 07-21-17 INFO     Layer 0: 253000 records fetched so far
+2026-11-19 07-21-22 INFO     Layer 0: 254000 records fetched so far
+2026-11-19 07-21-24 INFO     Layer 0: 255000 records fetched so far
+2026-11-19 07-21-27 INFO     Layer 0: 256000 records fetched so far
+2026-11-19 07-21-32 INFO     Layer 0: 257000 records fetched so far
+2026-11-19 07-21-35 INFO     Layer 0: 258000 records fetched so far
+2026-11-19 07-21-38 INFO     Layer 0: 259000 records fetched so far
+2026-11-19 07-21-40 INFO     Layer 0: 260000 records fetched so far
+2026-11-19 07-21-42 INFO     Layer 0: 261000 records fetched so far
+2026-11-19 07-21-43 INFO     Layer 0: 262000 records fetched so far
+2026-11-19 07-21-46 INFO     Layer 0: 263000 records fetched so far
+2026-11-19 07-21-48 INFO     Layer 0: 264000 records fetched so far
+2026-11-19 07-21-50 INFO     Layer 0: 265000 records fetched so far
+2026-11-19 07-21-52 INFO     Layer 0: 266000 records fetched so far
+2026-11-19 07-21-54 INFO     Layer 0: 267000 records fetched so far
+2026-11-19 07-21-56 INFO     Layer 0: 268000 records fetched so far
+2026-11-19 07-21-58 INFO     Layer 0: 269000 records fetched so far
+2026-11-19 07-22-00 INFO     Layer 0: 270000 records fetched so far
+2026-11-19 07-22-04 INFO     Layer 0: 271000 records fetched so far
+2026-11-19 07-22-06 INFO     Layer 0: 272000 records fetched so far
+2026-11-19 07-22-08 INFO     Layer 0: 273000 records fetched so far
+2026-11-19 07-22-10 INFO     Layer 0: 274000 records fetched so far
+2026-11-19 07-22-12 INFO     Layer 0: 275000 records fetched so far
+2026-11-19 07-22-14 INFO     Layer 0: 276000 records fetched so far
+2026-11-19 07-22-17 INFO     Layer 0: 277000 records fetched so far
+2026-11-19 07-22-21 INFO     Layer 0: 278000 records fetched so far
+2026-11-19 07-22-24 INFO     Layer 0: 279000 records fetched so far
+2026-11-19 07-22-25 INFO     Layer 0: 280000 records fetched so far
+2026-11-19 07-22-28 INFO     Layer 0: 281000 records fetched so far
+2026-11-19 07-22-29 INFO     Layer 0: 282000 records fetched so far
+2026-11-19 07-22-35 INFO     Layer 0: 283000 records fetched so far
+2026-11-19 07-22-37 INFO     Layer 0: 284000 records fetched so far
+2026-11-19 07-22-38 INFO     Layer 0: 285000 records fetched so far
+2026-11-19 07-22-40 INFO     Layer 0: 286000 records fetched so far
+2026-11-19 07-22-42 INFO     Layer 0: 287000 records fetched so far
+2026-11-19 07-22-46 INFO     Layer 0: 288000 records fetched so far
+2026-11-19 07-22-49 INFO     Layer 0: 289000 records fetched so far
+2026-11-19 07-22-51 INFO     Layer 0: 290000 records fetched so far
+2026-11-19 07-22-53 INFO     Layer 0: 291000 records fetched so far
+2026-11-19 07-22-55 INFO     Layer 0: 292000 records fetched so far
+2026-11-19 07-22-56 INFO     Layer 0: 293000 records fetched so far
+2026-11-19 07-22-58 INFO     Layer 0: 294000 records fetched so far
+2026-11-19 07-23-00 INFO     Layer 0: 295000 records fetched so far
+2026-11-19 07-23-02 INFO     Layer 0: 296000 records fetched so far
+2026-11-19 07-23-04 INFO     Layer 0: 297000 records fetched so far
+2026-11-19 07-23-06 INFO     Layer 0: 298000 records fetched so far
+2026-11-19 07-23-08 INFO     Layer 0: 299000 records fetched so far
+2026-11-19 07-23-10 INFO     Layer 0: 300000 records fetched so far
+2026-11-19 07-23-14 INFO     Layer 0: 301000 records fetched so far
+2026-11-19 07-23-16 INFO     Layer 0: 302000 records fetched so far
+2026-11-19 07-23-18 INFO     Layer 0: 303000 records fetched so far
+2026-11-19 07-23-21 INFO     Layer 0: 304000 records fetched so far
+2026-11-19 07-23-24 INFO     Layer 0: 305000 records fetched so far
+2026-11-19 07-23-26 INFO     Layer 0: 306000 records fetched so far
+2026-11-19 07-23-28 INFO     Layer 0: 307000 records fetched so far
+2026-11-19 07-23-30 INFO     Layer 0: 308000 records fetched so far
+2026-11-19 07-23-33 INFO     Layer 0: 309000 records fetched so far
+2026-11-19 07-23-35 INFO     Layer 0: 310000 records fetched so far
+2026-11-19 07-23-37 INFO     Layer 0: 311000 records fetched so far
+2026-11-19 07-23-39 INFO     Layer 0: 312000 records fetched so far
+2026-11-19 07-23-41 INFO     Layer 0: 313000 records fetched so far
+2026-11-19 07-23-43 INFO     Layer 0: 314000 records fetched so far
+2026-11-19 07-23-45 INFO     Layer 0: 315000 records fetched so far
+2026-11-19 07-23-48 INFO     Layer 0: 316000 records fetched so far
+2026-11-19 07-23-50 INFO     Layer 0: 317000 records fetched so far
+2026-11-19 07-23-52 INFO     Layer 0: 318000 records fetched so far
+2026-11-19 07-23-55 INFO     Layer 0: 319000 records fetched so far
+2026-11-19 07-23-57 INFO     Layer 0: 320000 records fetched so far
+2026-11-19 07-24-00 INFO     Layer 0: 321000 records fetched so far
+2026-11-19 07-24-02 INFO     Layer 0: 322000 records fetched so far
+2026-11-19 07-24-05 INFO     Layer 0: 323000 records fetched so far
+2026-11-19 07-24-07 INFO     Layer 0: 324000 records fetched so far
+2026-11-19 07-24-09 INFO     Layer 0: 325000 records fetched so far
+2026-11-19 07-24-11 INFO     Layer 0: 326000 records fetched so far
+2026-11-19 07-24-13 INFO     Layer 0: 327000 records fetched so far
+2026-11-19 07-24-16 INFO     Layer 0: 328000 records fetched so far
+2026-11-19 07-24-19 INFO     Layer 0: 329000 records fetched so far
+2026-11-19 07-24-21 INFO     Layer 0: 330000 records fetched so far
+2026-11-19 07-24-23 INFO     Layer 0: 331000 records fetched so far
+2026-11-19 07-24-26 INFO     Layer 0: 332000 records fetched so far
+2026-11-19 07-24-28 INFO     Layer 0: 333000 records fetched so far
+2026-11-19 07-24-30 INFO     Layer 0: 334000 records fetched so far
+2026-11-19 07-24-32 INFO     Layer 0: 335000 records fetched so far
+2026-11-19 07-24-34 INFO     Layer 0: 336000 records fetched so far
+2026-11-19 07-24-37 INFO     Layer 0: 337000 records fetched so far
+2026-11-19 07-24-39 INFO     Layer 0: 338000 records fetched so far
+2026-11-19 07-24-41 INFO     Layer 0: 339000 records fetched so far
+2026-11-19 07-24-43 INFO     Layer 0: 340000 records fetched so far
+2026-11-19 07-24-45 INFO     Layer 0: 341000 records fetched so far
+2026-11-19 07-24-47 INFO     Layer 0: 342000 records fetched so far
+2026-11-19 07-24-49 INFO     Layer 0: 343000 records fetched so far
+2026-11-19 07-24-52 INFO     Layer 0: 344000 records fetched so far
+2026-11-19 07-24-54 INFO     Layer 0: 345000 records fetched so far
+2026-11-19 07-24-56 INFO     Layer 0: 346000 records fetched so far
+2026-11-19 07-24-58 INFO     Layer 0: 347000 records fetched so far
+2026-11-19 07-25-00 INFO     Layer 0: 348000 records fetched so far
+2026-11-19 07-25-03 INFO     Layer 0: 349000 records fetched so far
+2026-11-19 07-25-05 INFO     Layer 0: 350000 records fetched so far
+2026-11-19 07-25-07 INFO     Layer 0: 351000 records fetched so far
+2026-11-19 07-25-09 INFO     Layer 0: 352000 records fetched so far
+2026-11-19 07-25-11 INFO     Layer 0: 353000 records fetched so far
+2026-11-19 07-25-13 INFO     Layer 0: 354000 records fetched so far
+2026-11-19 07-25-43 ERROR    HTTP request for schema failed
+Traceback (most recent call last):
+  File "C:\Users\ingwe\AppData\Local\Python\pythoncore-3.15-64\Lib\site-packages\urllib3\connectionpool.py", line 540, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\ingwe\AppData\Local\Python\pythoncore-3.15-64\Lib\site-packages\urllib3\connection.py", line 638, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\ingwe\AppData\Local\Python\pythoncore-3.15-64\Lib\http\client.py", line 1490, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\ingwe\AppData\Local\Python\pythoncore-3.15-64\Lib\http\client.py", line 350, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ingwe\AppData\Local\Python\pythoncore-3.15-64\Lib\http\client.py", line 306, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\ingwe\AppData\Local\Python\pythoncore-3.15-64\Lib\socket.py", line 738, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\ingwe\AppData\Local\Python\pythoncore-3.15-64\Lib\ssl.py", line 1366, in recv_into
+    return self.read(nbytes, buffer)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\ingwe\AppData\Local\Python\pythoncore-3.15-64\Lib\ssl.py", line 1165, in read
+    return self._sslobj.read(len, buffer)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+TimeoutError: The read operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ingwe\AppData\Local\Python\pythoncore-3.15-64\Lib\site-packages\requests\adapters.py", line 696, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\ingwe\AppData\Local\Python\pythoncore-3.15-64\Lib\site-packages\urllib3\connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\ingwe\AppData\Local\Python\pythoncore-3.15-64\Lib\site-packages\urllib3\util\retry.py", line 510, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ingwe\AppData\Local\Python\pythoncore-3.15-64\Lib\site-packages\urllib3\util\util.py", line 39, in reraise
+    raise value
+  File "C:\Users\ingwe\AppData\Local\Python\pythoncore-3.15-64\Lib\site-packages\urllib3\connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\ingwe\AppData\Local\Python\pythoncore-3.15-64\Lib\site-packages\urllib3\connectionpool.py", line 542, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ingwe\AppData\Local\Python\pythoncore-3.15-64\Lib\site-packages\urllib3\connectionpool.py", line 373, in _raise_timeout
+    raise ReadTimeoutError(
+        self, url, f"Read timed out. (read timeout={timeout_value})"
+    ) from err
+urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='services6.arcgis.com', port=443): Read timed out. (read timeout=30)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ingwe\OneDrive\Desktop\data-competency-assessment\code\challenge_part_1.py", line 91, in fetch_filtered_dataset_records
+    r = requests.get(url, params=params, timeout=30)                                             # The same as before, this line sends a GET request to the constructed URL with the specified parameters and a timeout of 30 seconds. It fetches a page of records from the dataset.
+  File "C:\Users\ingwe\AppData\Local\Python\pythoncore-3.15-64\Lib\site-packages\requests\api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\ingwe\AppData\Local\Python\pythoncore-3.15-64\Lib\site-packages\requests\api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ingwe\AppData\Local\Python\pythoncore-3.15-64\Lib\site-packages\requests\sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\ingwe\AppData\Local\Python\pythoncore-3.15-64\Lib\site-packages\requests\sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\ingwe\AppData\Local\Python\pythoncore-3.15-64\Lib\site-packages\requests\adapters.py", line 742, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='services6.arcgis.com', port=443): Read timed out. (read timeout=30)
+2026-11-19 07-28-49 INFO     Fetching schema from https://services6.arcgis.com/nyYfO9SxHU2ChQd9/ArcGIS/rest/services/Service_Requests_2023_until_20_May_2026/FeatureServer
+2026-11-19 07-28-49 INFO     Fetching schema from https://services6.arcgis.com/nyYfO9SxHU2ChQd9/ArcGIS/rest/services/Service_Requests_2023_until_20_May_2026/FeatureServer/0/query
+2026-11-19 07-28-50 INFO     Layer 0: 1000 records fetched so far
+2026-11-19 07-28-50 INFO     Layer 0: 2000 records fetched so far
+2026-11-19 07-28-50 INFO     Layer 0: 3000 records fetched so far
+2026-11-19 07-28-51 INFO     Layer 0: 4000 records fetched so far
+2026-11-19 07-28-51 INFO     Layer 0: 5000 records fetched so far
+2026-11-19 07-28-52 INFO     Layer 0: 6000 records fetched so far
+2026-11-19 07-28-52 INFO     Layer 0: 7000 records fetched so far
+2026-11-19 07-28-53 INFO     Layer 0: 8000 records fetched so far
+2026-11-19 07-28-53 INFO     Layer 0: 9000 records fetched so far
+2026-11-19 07-28-54 INFO     Layer 0: 10000 records fetched so far
+2026-11-19 07-28-55 INFO     Layer 0: 11000 records fetched so far
+2026-11-19 07-28-55 INFO     Layer 0: 12000 records fetched so far
+2026-11-19 07-28-56 INFO     Layer 0: 13000 records fetched so far
+2026-11-19 07-28-56 INFO     Layer 0: 14000 records fetched so far
+2026-11-19 07-28-57 INFO     Layer 0: 15000 records fetched so far
+2026-11-19 07-28-57 INFO     Layer 0: 16000 records fetched so far
+2026-11-19 07-28-58 INFO     Layer 0: 17000 records fetched so far
+2026-11-19 07-28-58 INFO     Layer 0: 18000 records fetched so far
+2026-11-19 07-28-59 INFO     Layer 0: 19000 records fetched so far
+2026-11-19 07-29-00 INFO     Layer 0: 20000 records fetched so far
+2026-11-19 07-29-00 INFO     Layer 0: 21000 records fetched so far
+2026-11-19 07-29-01 INFO     Layer 0: 22000 records fetched so far
+2026-11-19 07-29-01 INFO     Layer 0: 23000 records fetched so far
+2026-11-19 07-29-01 INFO     Layer 0: 24000 records fetched so far
+2026-11-19 07-29-02 INFO     Layer 0: 25000 records fetched so far
+2026-11-19 07-29-02 INFO     Layer 0: 26000 records fetched so far
+2026-11-19 07-29-03 INFO     Layer 0: 27000 records fetched so far
+2026-11-19 07-29-04 INFO     Layer 0: 28000 records fetched so far
+2026-11-19 07-29-04 INFO     Layer 0: 29000 records fetched so far
+2026-11-19 07-29-05 INFO     Layer 0: 30000 records fetched so far
+2026-11-19 07-29-06 INFO     Layer 0: 31000 records fetched so far
+2026-11-19 07-29-06 INFO     Layer 0: 32000 records fetched so far
+2026-11-19 07-29-07 INFO     Layer 0: 33000 records fetched so far
+2026-11-19 07-29-07 INFO     Layer 0: 34000 records fetched so far
+2026-11-19 07-29-08 INFO     Layer 0: 35000 records fetched so far
+2026-11-19 07-29-08 INFO     Layer 0: 36000 records fetched so far
+2026-11-19 07-29-09 INFO     Layer 0: 37000 records fetched so far
