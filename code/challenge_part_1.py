@@ -1,13 +1,12 @@
 import requests, time, logging
 import pandas as pd
-import matplotlib.pyplot as plt
 from pathlib import Path
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
 session = requests.Session()
 session.mount("https://", HTTPAdapter(
-    maxRetries=Retry(
+    max_retries=Retry(
         total=5, 
         backoff_factor=1, 
         status_forcelist=[429, 500, 502, 503, 504],
@@ -130,3 +129,5 @@ if __name__ == "__main__":
         where_clause="C3_Complaint_Type = 'No Power'"
         df2 = fetch_filtered_dataset_records(base_url, layer_id, where=where_clause)
         logger.info("Layer %s: %s records downloaded", layer_id, f"{len(df2):,}")
+        output = raw_dir /f"{layer_id}_{layer_name.replace(' ', '_')}.csv"
+        df2.to_csv(output, index=False)
